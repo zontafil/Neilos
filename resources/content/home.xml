@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<home clear="true" target="#main_div_content" animation="enabled" comments="enabled">
+	<!--<entry type="tab" id="291111_zcms_112" date="2011-11-29" author="m3l7">
+		<entrytitle>
+				<span>Zcms 1.1.2</span>
+		</entrytitle>
+		<content> 
+			<span> <b> Zcms 1.1.2 </b>! Another minor release</span>
+			<br />
+			<span>Changelog:</span>
+			<br />
+				<li>deprecation of old functions: xml2string</li>
+				<li>add support for loading php or html files.</li>
+				<li>&lt;load_xml&gt; and add_xml() have been renamed to &lt;load_file&gt; and add_file()</li>
+				<li>the title element has been renamed to 'entrytitle' for a php incompatibility</li>	
+			<br />
+			Next version will have a better article/comment approach, using more server side functionalities.
+			<br />
+			<b>KNOWN ISSUE:</b> comments in the non-first articles are not shown... 
+		</content>
+</entry>-->
+
+	<entry type="tab" id="8911_zcms_111" date="2011-09-08" author="m3l7">
+		<entrytitle>
+				<span>Zcms 1.1.1</span>
+		</entrytitle>
+		<content> 
+			<span> <b> Zcms 1.1.1 </b>! Bug fixing only release...</span>
+			<br />
+			<span>Changelog:</span>
+			<br />
+				<li>comments are hidden correctly when the parent&#39;s post is hidden</li>
+				<li>all comments are loaded correctly now</li>	
+			<br />
+			<span>I want to release one or two versions of zcms before adding some server-side love... </span>
+			<span>Some routines are becoming slow, I need to polish the code, add some little features (collapse/expand
+				all comments), and think about the best post/comment approach..</span>
+			<br />
+			<span>Stay tuned.</span>
+		</content>
+	</entry>
+
+	<entry type="tab" id="7911_zcms_11" date="2011-09-07" author="m3l7">
+		<entrytitle>
+				<span>Zcms 1.1</span>
+		</entrytitle>
+		<content> 
+			<span>Phew! Just released <b>Zcms 1.1!</b>. Finally I've added comments support. There are many bugs and limitations.. you are warned</span>
+			<br />
+			<span>Changelog:</span>
+			<br />
+				<li>added analize_config_post() for analize config after adding the content</li>
+				<li>added support for aligning elements horizontally (useful with fixed positioned elements)</li>
+				<li>initial support for comments</li>
+			<br />
+			<span>Known issues: </span>
+			<br />
+			<li>comments are not correctly hidden</li>
+			<li>comments are read-only for now (server implementation of zcms is still non-existent)</li>
+			<li>I don&#39;t know if comment&#39;s protocol should be rewrited, deleted or kept as it is now... 
+			 using only posts, which can eventually be replies of other posts, seems a better and simpler idea</li>
+			 <li>comments' animation doesn't work</li>
+			 <li>comments are not loaded correctly when 2 or more entries are shown (ajax overlapping)</li>
+		</content>
+	</entry>
+	
+	<entry type="tab" id="6911_zcms_103" date="2011-09-06" author="m3l7">
+		<entrytitle>
+				<span>Zcms 1.0.3</span>
+		</entrytitle>
+		<content> 
+			<span>new shit online! <b>Zcms 1.0.3!</b>. Added a couple of nice features I'm sure you'll love</span>
+			<br />
+				<li>fixed animation (added an additional subdiv to every structure divs)</li>
+				<li>added more animations. Now you can choose between fade,slide and hide(default)</li>
+				<li>added subdiv &#39;text_right&#39;</li>
+				<li>support for date and author (tag &#39;author&#39; and &#39;date&#39; for css styling)</li>
+				<li>support for showing/hiding entries. By default, first entry is shown, others are hidden</li>
+			<br />
+			<span>Spread the love &lt;333 </span>
+			<br />
+			<span>lord_of_chaos=odites</span>
+		</content>
+	</entry>
+	<entry type="tab" id="5911zcms102" date="2011-09-05" author="m3l7">
+		<entrytitle>
+				<span>Zcms 1.0.2</span>
+		</entrytitle>
+		<content> 
+			<span><b>Zcms 1.0.2</b> up and running. This is (another) minor release including, among bug fixes:</span>
+			<br />
+			<li>animations are loaded serially (better stability)</li>
+			<li>class names clean up (no more tons of useless classes inside the same div)</li>
+			<li>the first entry now has an additional 'firstentry' class for more css fun</li>
+			<li>xml tags has better names now (tab --> title, container --> entry)</li>
+			<li>added a little parser that substitutes variables in the text entries</li>
+			<br />
+			
+		</content>
+		</entry>
+		<entry type="tab" id="2911first" date="2011-09-02" author="m3l7">
+			<entrytitle>
+				<span>Hello World (:</span>
+			</entrytitle>
+			<content>
+				<span>Plaoo@all</span>
+			</content>
+	</entry>
+</home>
+

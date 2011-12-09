@@ -1,0 +1,83 @@
+/*#menuentry_entry{
+		width:48px;
+		height:12px;
+		float:left;
+		margin-top:10px;
+		background-image:url(../img/anim_wait_small.gif);
+		visibility:hidden;
+}*/
+#menu_div{
+	position: fixed;
+	top: 0px;
+	/*background-color: #FFFFFF;*/
+	/*background-image: url(../img/nin_bg.jpg);*/
+	background-color: #000000;
+
+}
+#menuentry_content_text{
+	margin-top:10px;
+	width:900px;
+	height:30px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom:0px;
+	border-bottom: solid;
+	border-bottom-color: rgba(112,45,40,0.5);
+	/*background-color: rgba(112,45,40,0.5);*/
+
+}
+#menu_div ul
+{
+	height: 0px;
+	position:relative;
+	margin:auto;
+	margin-left:0px;
+	text-align: right;
+	padding-bottom:9px;
+	padding-right:0px;
+}
+#menu_div a:hover {
+color: #FFF;
+}
+#menu_div li
+{
+	display: inline;
+	padding-top:20px;
+	padding-bottom: 0px;
+	margin-right:0px;
+	margin-left:0px;
+	height:25px;
+	/*background-image: url(../img/nin_bg.jpg);*/
+	background-color: #000000;
+}
+#menu_div a {
+	background-repeat: no-repeat;
+	background-position: right;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-right: 5px;
+	padding-left: 32px;
+	line-height: 25px;
+	text-decoration: none;
+	font-family: "Courier New", Courier, monospace;
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: 25px;
+	/*color: #702d28;*/
+	color: rgb(112,45,40);
+	/*color: rgb(110,20,13);*/
+	/*color: #a40101;*/
+	/*color: #FFFFFF;*/
+	font-variant: small-caps;
+	font-weight:lighter;
+}
+a
+{
+outline: none;
+}
+.copy{
+	visibility:hidden;
+	width:0px;
+	height:0px;
+	padding-left:0px;
+	padding-right:0px;
+}

@@ -1,0 +1,13 @@
+#footer_div .content_text{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0px;
+	width:900px;
+	height: 5px;
+	text-align:right;
+	font-family: "Courier New", Courier, monospace;
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: 11px;
+	font-weight:lighter;
+	color: #FFFFFF;
+}

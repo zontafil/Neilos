@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<menu animation="disabled" clear="true" target="#menu_div_content">
+	<entry type="div" id="menuentry">  
+		<content>
+			<ul class="menu_ul">
+			<li class="menu_li">
+			<a class="menu_a" href="#home.xml">home</a>
+			</li>
+			<li class="menu_li">
+			<a class="menu_a" href="#projects.xml">projects</a>
+			</li>
+			<li class="menu_li">
+			<a class="menu_a" href="#testphp.php">testphp</a>
+			</li>
+
+			</ul>
+		</content>
+	</entry>
+	<config id="menu2">
+			<css id="menu">resources/css/menu.css</css>
+			<align_horiz>#menu_div</align_horiz>
+			<click source="a"></click>
+	</config>
+</menu>

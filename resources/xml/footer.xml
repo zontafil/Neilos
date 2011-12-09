@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<footer animation="disabled" target="#footer_div_content">
+	<entry type="div" id="footerentry">
+	<content>
+		<span> Created with Zcms _$version</span>
+	</content>
+	</entry>
+	<config id="footer">
+			<css id="footer">resources/css/footer.css</css>
+	</config>
+</footer>

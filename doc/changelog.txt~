@@ -1,0 +1,40 @@
+////// Zcms 1.1.1 2011-09-08 //////
+-comments are hidden correctly when the parent's post is hidden
+-all comments are loaded correctly now
+
+////// Zcms 1.1 2011-09-07 //////
+-added analize_config_post() for analize config after adding the content
+-added support for aligning elements horizontally (useful with fixed positioned elements)
+-initial support for comments
+
+Known issues:
+-comments are not correctly hidden
+-comments are read-only for now (server implementation of zcms is still non-existent)
+-I don't know if comment's protocol should be rewrited, deleted or kept as it is now... 
+ using only posts, which can eventually be replies of other posts, seems a better and simpler idea
+-comments' animation doesn't work
+-comments are not loaded correctly when 2 or more entries are shown (ajax overlapping)
+
+////// Zcms 1.0.3 2011-09-06 //////
+-fixed animation (added an additional subdiv to every structure divs)
+-added more animations. Now you can choose between fade,slide and hide(default)
+-added subdiv 'text_right'
+-support for date and author (tag 'author' and 'date' for css styling)
+-support for showing/hiding entries. By default, first entry is shown, others are hidden
+
+////// Zcms 1.0.2 2011-09-05 //////
+-animations are loaded serially (better stability)
+-class names clean up (no more tons of useless classes inside the same div)
+-the first entry now has an additional 'firstentry' class for more css fun
+-xml tags has better names now (tab --> title, container --> entry)
+-added a little parser that substitutes variables in the text entries
+
+////// Zcms 1.0.1 ~ 2011-09-02 //////
+-support for multiple posts, instead of the classic single page
+-now xml pages are retrieved serially (better reliability)
+-code clean up
+
+
+////// Zcms 1.0 ~ 2011-03 //////
+-First release
+

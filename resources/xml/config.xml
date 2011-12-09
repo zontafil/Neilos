@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<main_config animation="disabled">
+	<config id="main">
+		<css id="main_win">resources/css/main.css</css>
+		<structure_div>menu_div</structure_div>
+		<structure_div>main_div</structure_div>
+		<structure_div>footer_div</structure_div>
+		<default_target>#main_div_content</default_target>
+		<load_file tag="menu">resources/xml/menu.xml</load_file>
+		<load_file tag="footer">resources/xml/footer.xml</load_file>
+		<animation speed="fast">slide</animation>
+		<server>false</server>
+		<home>#home.xml</home>
+	</config>
+</main_config>

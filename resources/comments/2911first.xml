@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<comments_2911first id="2911first" target="#2911first_comments_text" animation="enabled">
+	<entry type="comment" id="1" author="m3l7" date="2011-09-07">
+		<content>
+			<span>Test comment</span>
+		</content>
+	</entry>
+	<entry type="comment" id="2" author="m3l7" date="2011-09-07">
+		<content>
+			<span>test reply 2</span>
+		</content>
+	</entry>
+
+</comments_2911first>
