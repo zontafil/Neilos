@@ -1,7 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage[a4paper]{geometry}
 \geometry{top=1.0in, bottom=1.0in, left=0.1in, right=0.1in}
-	%\pagestyle{plain}
 \setlength{\textwidth}{150mm}
 \setlength{\oddsidemargin}{0.1cm}
 \setlength{\evensidemargin}{0.1cm}
@@ -9,22 +8,33 @@
 \setlength{\marginparwidth}{0.1cm}
 \setlength{\marginparpush}{0.1cm}
 
+\usepackage{minted}
+
 \usepackage[italian]{babel}
 \usepackage{graphicx}
 \usepackage[intlimits]{amsmath}
 \usepackage{amsfonts}
-%  \usepackage[pdftex]{graphicx}
- %  \usepackage{epstopdf}
-%\usepackage{amsmath}
 \usepackage{listings}
-%\usepackage[margin=0.5in]{geometry}  
-\addtolength{\oddsidemargin}{-.4in}
-\addtolength{\evensidemargin}{-.4in}
+\addtolength{\oddsidemargin}{-.0in}
+\addtolength{\evensidemargin}{-.0in}
 
 \usepackage{color}
 
-
 \begin{document}
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type},
+  backgroundcolor=\color{lightgray},
+  numbers=left,
+  numberstyle=\footnotesize\ttfamily\color{gray},
+  numbersep=0.5pt
+}
 \begin{center}
  \huge \bfseries {Zcms}
 \\[0.5cm]
@@ -33,9 +43,71 @@
 Zcms is a content managent system based almost completely on javascript. It is designed to be lightweight and fast and to use ajax for content loading. Furthermore, it is possible to use mysql, xml or both technologies to store content datas. Building a website with zcms should be as simple as writing a basic xml file.
 \section{Workflow of Zcms}
 The first thing zcms does is loading resources/xml/config.xml, which is the main configuration of the site. The main config usually (but not mandatory) loads the css styles, add the layout divs (see Structure section), and sets global variables, like default target or default animation. Thereafter, the main config loads other external files, which can add articles, comments, html, php code or load in turn other files. Every external file must be loaded with a tag parameter that tells zcms which part of the file is to be added. Moreover, a target or a default target previosuly set must be provided (see Files Anatomy - Entries for further informations).
-\includegraphics[scale=0.7]{Diagramma_zcms.png}
+\includegraphics[scale=0.7]{Diagramma_zcms.png} 
 \section{Files Anatomy}
-Every file is loaded with a tag parameter. Everything outside the tag is ignored and won't be loaded.
+Every file is loaded with a tag parameter. Everything outside the tag is ignored and won't be loaded. For php files, the tag must be enclosed in at least one other element. For xml files, the tag can be the ancestor of the document.\\
+There are 2 main sections: config and entries. The content of the site is in the form of a single or multiple entries added to a target selector.\\
+\footnotesize
+\begin{minted}{xml}
+<tag>
+  <config>
+    ...
+  </config>
+  <entry>
+    ...
+  </entry>
+  <entry>
+    ...
+  </entry>
+</tag>
+\end{minted}
+\normalsize
+\section{Config}
+The config tag is useful to load additionals xml,css,php files or to set useful settings. Available tags are:
+\begin{list}{-}{}
+\item \begin{minted}{xml}
+<css id='css_id'>       
+      \end{minted}
+Load an external css file. The id is used to identify the css in order to remove or replace it afterwards.
+\item \begin{minted}{xml}
+<structure_div>div_name</structure_div>       
+      \end{minted}
+Add a div to the DOM. (See Structure section)
+\item \begin{minted}{xml}
+<default_target>target</default_target>       
+      \end{minted}
+Set the default target, as a jquery selector, in which entries should be added. It is optional, althought an error is returned if no target is defined in external files.
+\item \begin{minted}{xml}
+<animation speed="fast">slide</animation>
+      \end{minted}
+Set the animation type (slide/hide/fade) and speed(fast/normal/slow or a value in ms) when entries are added to the DOM.\\
+\bfseries{TODO}. \normalfont Animations can't be disabled or enabled globally via config. It should be fixed.
+\item \begin{minted}{xml}
+<home>#home.xml</home>
+      \end{minted}
+Set the default home page. See links section for informations about links meaning.
+ 
+\end{list}
+
+\section{entry}
+\subsection{tab}
+\subsection{Comments}
+Comments can be enabled or disabled in the single entry using the attribute \emph{comments}=\{'enabled','disabled'\}.\\
+Comments must be located in resources/comments/\$entry\_id\$.xml.\\
+A comment is an entry with \emph{type} attribute set to 'comment'. This ensures that zcms adds author of the comment and date to the entry tab.
+Additionally, the entry div will have an \emph{id}='\$entry\_id\$\_comments' and \emph{class}='comments'.\\[0.2cm]
+\bfseries{TODO}.\normalfont ATM configs inside entries are ignored (AFAIK). They can be introduced, allowing to unify tab and comments entries into one more dynamic paradigm.
+\footnotesize
+
+\begin{minted}{xml}
+ <comments_$entry_id$ id="$entry_id$" target="#$entry_id$_comments_text" animation="enabled">
+	<entry type="comment" id="1" author="m3l7" date="2011-09-07">
+		<content>
+			<span>Test comment</span>
+		</content>
+	</entry>
+\end{minted}
+
 \section{Structure}
 Structure objects can be created using the following methods:
 \subsection{js methods}
@@ -49,27 +121,5 @@ Structure objects can be created using the following methods:
 \item $<entry>$. Create a new tab. See the proper section for further informations.
 \item 
 \end{list}
-\section{Config}
-\bigskip
-\bfseries{Note.}\normalfont If a php file is loaded through $<$load\_file$>$, the target tag must be a children of an element, otherwise it won't be loaded correctly. Xml files don't have this limitation.\\
-\section{entry}
-\subsection{tab}
-\subsection{Comments}
-Comments can be enabled or disabled in the single entry using the attribute \emph{comments}=\{'enabled','disabled'\}.\\
-Comments must be located in resources/comments/\$entry\_id\$.xml.\\
-A comment is an entry with \emph{type} attribute set to 'comment'. This ensures that zcms adds author of the comment and date to the entry tab.
-Additionally, the entry div will have an \emph{id}='\$entry\_id\$\_comments' and \emph{class}='comments'.\\[0.2cm]
-\bfseries{TODO}.\normalfont ATM configs inside entries are ignored (AFAIK). They can be introduced, allowing to unify tab and comments entries into one more dynamic paradigm.
-\footnotesize
-\lstset{language=XML}
-\begin{lstlisting}
- <comments_$entry_id$ id="$entry_id$" target="#$entry_id$_comments_text" animation="enabled">
-	<entry type="comment" id="1" author="m3l7" date="2011-09-07">
-		<content>
-			<span>Test comment</span>
-		</content>
-	</entry>
-\end{lstlisting}
-
 
 \end{document}
