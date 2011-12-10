@@ -64,6 +64,26 @@ There are 2 main sections: config and entries. The content of the site is in the
 </tag>
 \end{minted}
 \normalsize
+\subsection{Tag Attributes}
+\begin{list}{-}{}
+\item \begin{minted}{xml}
+<tag target='target'>
+      \end{minted}
+Specify where the entries should be added. Jquery selector. If not set, zcms will try to use default\_target
+\item \begin{minted}{xml}
+<tag clear='true/false'>
+      \end{minted}
+if true, delete all content inside the target. Default: true
+\item \begin{minted}{xml}
+<tag animation='enabled/disabled>
+      \end{minted}
+Enable or disable animation when entries are shown/hidden. See config section for more informations
+\item \begin{minted}{xml}
+<tag comments='enabled/disabled>
+      \end{minted}
+If enabled, zcms will try to load comments of every entry
+\end{list}
+
 \section{Config}
 The config tag is useful to load additionals xml,css,php files or to set useful settings. Available tags are:
 \begin{list}{-}{}
@@ -95,24 +115,55 @@ Load an external file. Zcms will add the content inside the jquery selector tag.
 \end{list}
 
 \section{entry}
-\subsection{tab}
-\subsection{Comments}
-Comments can be enabled or disabled in the single entry using the attribute \emph{comments}=\{'enabled','disabled'\}.\\
-Comments must be located in resources/comments/\$entry\_id\$.xml.\\
-A comment is an entry with \emph{type} attribute set to 'comment'. This ensures that zcms adds author of the comment and date to the entry tab.
-Additionally, the entry div will have an \emph{id}='\$entry\_id\$\_comments' and \emph{class}='comments'.\\[0.2cm]
-\bfseries{TODO}.\normalfont ATM configs inside entries are ignored (AFAIK). They can be introduced, allowing to unify tab and comments entries into one more dynamic paradigm.
+Inside the same tag, there can be one or more entries. Entries can be tab or comments, with obvious meaning.
+\subsection{Entry attributes}
+\begin{list}{-}{}
+\item \begin{minted}{xml}
+<entry type='tab/comment'>
+      \end{minted}
+\item \begin{minted}{xml}
+<entry id='id'>
+      \end{minted}
+\item \begin{minted}{xml}
+<entry date='date' author='author'>
+      \end{minted}
+
+\end{list}
+\subsection{Tab}
+The entry id is necessary to identify the entry and to attach comments to it
+An entry tab must have the following prototype:
+\footnotesize
+\begin{minted}{xml}
+<entry type="tab" id="id" date="2011-09-08" author="m3l7">
+	<entrytitle>
+	    ...
+	</entrytitle>
+	<content> 
+	    ...
+	</content>
+</entry>
+\end{minted}
+\normalsize
+\subsection{Comment}
+Comments can be enabled or disabled in the single file/tag using the attribute 
+\begin{minted}{xml}
+<tag comments='enabled/disabled'>
+\end{minted}
+Comments must be located in resources/comments/entry\_id.xml, where entry\_id is the id of the parent entry.\\
+The entry div will have an \emph{id}='entry\_id\_comments' and \emph{class}='comments'.\\[0.2cm]
+\bfseries{TODO}.\normalfont ATM configs inside entries are ignored (AFAIK). They can be introduced, allowing to unify tab and comments entries into one more dynamic paradigm.\\
+Comments must have the following prototype:
 \footnotesize
 
 \begin{minted}{xml}
- <comments_$entry_id$ id="$entry_id$" target="#$entry_id$_comments_text" animation="enabled">
+<comments_entry_id id="entry_id" target="entry_id_comments_text" animation="enabled">
 	<entry type="comment" id="1" author="m3l7" date="2011-09-07">
 		<content>
 			<span>Test comment</span>
 		</content>
 	</entry>
 \end{minted}
-
+\normalsize
 \section{Structure}
 Structure objects can be created using the following methods:
 \subsection{js methods}
@@ -122,9 +173,14 @@ Structure objects can be created using the following methods:
 \end{list}
 \subsection{xml methods}
 \begin{list}{-}{}
-  \item $<structure\_div>$: create a div and a subdiv \_content. It is created at the end of the current DOM, so it should be used only in the main config. It must be placed inside $<$config$>$ tag.
-\item $<entry>$. Create a new tab. See the proper section for further informations.
-\item 
+  \item \begin{minted}{xml}
+<structure_div>         
+        \end{minted}
+create a div and a subdiv \_content. It is created at the end of the current DOM, so it should be used only in the main config. It must be placed inside $<$config$>$ tag.
+\item \begin{minted}{xml}
+<entry>       
+      \end{minted}
+Create a new tab. See the proper section for further informations.
 \end{list}
 
 \end{document}

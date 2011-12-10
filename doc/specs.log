@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2011.11.19)  10 DEC 2011 02:13
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2011.11.19)  10 DEC 2011 17:29
 entering extended mode
 \write18 enabled.
  %&-line parsing enabled.
@@ -433,14 +433,27 @@ system(rm specs.out.pyg)...executed.
 
 system(rm specs.pyg)...executed.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 100.
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
 
 
-(/usr/share/texmf/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
+(./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+ (./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
  [2]
 \openout3 = `specs.pyg'.
 
@@ -452,34 +465,131 @@ system(rm specs.out.pyg)...executed.
 
 system(rm specs.pyg)...executed.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 125.
+\openout3 = `specs.pyg'.
 
-(/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+ (./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+
+(./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+ (./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+ (./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+ (./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+
+(./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+ (./specs.out.pyg [3])
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+
+Overfull \hbox (22.8365pt too wide) in paragraph at lines 172--173
+[]\OT1/cmr/m/n/12 Zcms.Structure.new[]tab: this will crea-te an en-try (\OT1/cm
+r/bx/n/12 TO-DO \OT1/cmr/m/n/12 Re-na-me to new[]entry?).
+ []
+
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+(./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 179.
+ (/usr/share/texmf/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2002/01/19 v2.2g AMS font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 125.
+LaTeX Font Info:    Try loading font information for U+msb on input line 179.
 
 (/usr/share/texmf/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
-) [3] (./specs.aux) ) 
+)
+\openout3 = `specs.pyg'.
+
+system(pygmentize -l xml -f latex -F tokenmerge             -P "verboptions= " 
+-o specs.out.pyg specs.pyg)...executed.
+
+ (./specs.out.pyg)
+system(rm specs.out.pyg)...executed.
+
+system(rm specs.pyg)...executed.
+
+ [4]
+(./specs.aux) ) 
 Here is how much of TeX's memory you used:
- 4661 strings out of 256216
- 62510 string characters out of 1917071
+ 4679 strings out of 256216
+ 62661 string characters out of 1917071
  132936 words of memory out of 1500000
- 7858 multiletter control sequences out of 10000+200000
- 9010 words of font info for 35 fonts, out of 1200000 for 2000
+ 7850 multiletter control sequences out of 10000+200000
+ 11102 words of font info for 42 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 37i,8n,37p,671b,363s stack positions out of 5000i,500n,6000p,200000b,15000s
-</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></usr/
-share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/blu
-esky/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/sha
-re/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky
-/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb></usr/share/
-texmf/fonts/type1/bluesky/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/bluesky/c
-m/cmtt12.pfb>
-Output written on specs.pdf (3 pages, 78176 bytes).
+ 37i,5n,37p,671b,365s stack positions out of 5000i,500n,6000p,200000b,15000s
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/
+texmf/fonts/type1/bluesky/cm/cmmi12.pfb></usr/share/texmf/fonts/type1/bluesky/c
+m/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb></usr/share/tex
+mf/fonts/type1/bluesky/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/c
+mtt12.pfb>
+Output written on specs.pdf (4 pages, 60335 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 40 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
