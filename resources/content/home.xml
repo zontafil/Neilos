@@ -1,9 +1,50 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<home clear="true" target="#main_div_content" animation="enabled" comments="enabled">
-	<!--<entry type="tab" id="291111_zcms_112" date="2011-11-29" author="m3l7">
-		<entrytitle>
+<entry id="home">
+
+	<config>
+		<clear>true</clear>
+	</config>
+
+	<entry id="291211_zcms_12">
+		<config>
+			<author>m3l7</author>
+			<date>2011-12-29</date>
+		</config>
+		<title>
+				<span>Zcms 1.2</span>
+		</title>
+		<content> 
+			<span> <b> Zcms 1.2 is out</b>! This is the hardest release I've done so far.. most of the code
+			was rewritten.</span>
+			<br />
+			<span>Changelog:</span>
+			<br />
+				<li>added a very basic documentation updated to Zcms 1.1.2, so it's quite useless ATM ^_^</li>
+				<li>there is no more distinction between posts and comments, they're all entries</li>
+				<li>added support for loading subentries and entry's content only when the they are shown</li>
+				<li>Most configs are now inheritable to subentries</li>	
+				<li>Now entries behaviour can be set. Available modes are: show everything, hide everything, and show only the first entry</li>
+				<li>the homepage is not hardcoded anymore. It can be set in the config</li>
+				<li>minor changes</li>
+			<br />
+			<b>KNOWN ISSUE:</b> Using slide animation will probanly produce glitching, use fade instead 
+			<br />
+			I've opened a github repo for the project. You can find it here.<br />
+			I will change the project name (zcms is the name of at least 2 other CMSs :| )
+			<br />
+			BRB.
+			</content> 
+	</entry>
+
+
+	<entry id="291111_zcms_112">
+		<config>
+			<author>m3l7</author>
+			<date>2011-11-29</date>
+		</config>
+		<title>
 				<span>Zcms 1.1.2</span>
-		</entrytitle>
+		</title>
 		<content> 
 			<span> <b> Zcms 1.1.2 </b>! Another minor release</span>
 			<br />
@@ -12,18 +53,23 @@
 				<li>deprecation of old functions: xml2string</li>
 				<li>add support for loading php or html files.</li>
 				<li>&lt;load_xml&gt; and add_xml() have been renamed to &lt;load_file&gt; and add_file()</li>
-				<li>the title element has been renamed to 'entrytitle' for a php incompatibility</li>	
+				<li>the title element has been renamed to 'title' for a php incompatibility</li>	
 			<br />
 			Next version will have a better article/comment approach, using more server side functionalities.
 			<br />
-			<b>KNOWN ISSUE:</b> comments in the non-first articles are not shown... 
-		</content>
-</entry>-->
+			<b>KNOWN ISSUE:</b> comments in the non-first articles are not shown...
+			</content> 
+	</entry>
 
-	<entry type="tab" id="8911_zcms_111" date="2011-09-08" author="m3l7">
-		<entrytitle>
+	<entry id="8911_zcms_111" date="2011-09-08" author="m3l7">
+		<config>
+			<author>m3l7</author>
+			<date>2011-09-08</date>
+			<load_file mode="LoadWhenShown" entryid="comments_8911_zcms_111">resources/comments/8911_zcms_111.xml</load_file>
+		</config>
+		<title>
 				<span>Zcms 1.1.1</span>
-		</entrytitle>
+		</title>
 		<content> 
 			<span> <b> Zcms 1.1.1 </b>! Bug fixing only release...</span>
 			<br />
@@ -40,10 +86,14 @@
 		</content>
 	</entry>
 
-	<entry type="tab" id="7911_zcms_11" date="2011-09-07" author="m3l7">
-		<entrytitle>
+	<entry id="7911_zcms_11" date="2011-09-07" author="m3l7">
+		<config>
+			<author>m3l7</author>
+			<date>2011-09-07</date>
+		</config>
+		<title>
 				<span>Zcms 1.1</span>
-		</entrytitle>
+		</title>
 		<content> 
 			<span>Phew! Just released <b>Zcms 1.1!</b>. Finally I've added comments support. There are many bugs and limitations.. you are warned</span>
 			<br />
@@ -64,10 +114,14 @@
 		</content>
 	</entry>
 	
-	<entry type="tab" id="6911_zcms_103" date="2011-09-06" author="m3l7">
-		<entrytitle>
+	<entry id="6911_zcms_103" date="2011-09-06" author="m3l7">
+		<config>
+			<author>m3l7</author>
+			<date>2011-09-06</date>
+		</config>
+		<title>
 				<span>Zcms 1.0.3</span>
-		</entrytitle>
+		</title>
 		<content> 
 			<span>new shit online! <b>Zcms 1.0.3!</b>. Added a couple of nice features I'm sure you'll love</span>
 			<br />
@@ -82,10 +136,14 @@
 			<span>lord_of_chaos=odites</span>
 		</content>
 	</entry>
-	<entry type="tab" id="5911zcms102" date="2011-09-05" author="m3l7">
-		<entrytitle>
+	<entry id="5911zcms102" date="2011-09-05" author="m3l7">
+		<config>
+			<author>m3l7</author>
+			<date>2011-09-05</date>
+		</config>
+		<title>
 				<span>Zcms 1.0.2</span>
-		</entrytitle>
+		</title>
 		<content> 
 			<span><b>Zcms 1.0.2</b> up and running. This is (another) minor release including, among bug fixes:</span>
 			<br />
@@ -98,13 +156,17 @@
 			
 		</content>
 		</entry>
-		<entry type="tab" id="2911first" date="2011-09-02" author="m3l7">
-			<entrytitle>
+		<entry id="2911first" date="2011-09-02" author="m3l7">
+		<config>
+			<author>m3l7</author>
+			<date>2011-09-02</date>
+		</config>
+			<title>
 				<span>Hello World (:</span>
-			</entrytitle>
+			</title>
 			<content>
 				<span>Plaoo@all</span>
 			</content>
 	</entry>
-</home>
+</entry>
 

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<main_config animation="disabled">
-	<config id="main">
+<entry id="main">
+	<config option="preserve">
+		<skipcontent></skipcontent>
+		<skipsubentries></skipsubentries>
 		<css id="main_win">resources/css/main.css</css>
-		<structure_div>menu_div</structure_div>
-		<structure_div>main_div</structure_div>
-		<structure_div>footer_div</structure_div>
-		<default_target>#main_div_content</default_target>
-		<load_file tag="menu">resources/xml/menu.xml</load_file>
-		<load_file tag="footer">resources/xml/footer.xml</load_file>
-		<animation speed="fast">slide</animation>
-		<server>false</server>
+		<structure_div>menu</structure_div>
+		<structure_div>main</structure_div>
+		<structure_div>footer</structure_div>
+		<target>#main</target>
+		<load_file entryid="menu">resources/xml/menu.xml</load_file>
+		<load_file entryid="footer">resources/xml/footer.xml</load_file>
+		<animation speed="normal" type="fade">enabled</animation>
 		<home>#home.xml</home>
+		<display entries="showfirst"></display>
+		<clear>false</clear>
 	</config>
-</main_config>
+</entry>

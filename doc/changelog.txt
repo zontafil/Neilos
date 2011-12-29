@@ -1,8 +1,13 @@
-////// Zcms dev //////
--the home page is not hardcoded anymore, it can be set in the config using <home>#page</home>
+////// Zcms 1.2 2011-12-29 //////
+added a very basic documentation updated to Zcms 1.1.2, so it's quite useless ATM ^_^
+there is no more distinction between posts and comments, they're all entries
+added support for loading subentries and entry's content only when the they are shown
+Most configs are now inheritable to subentries
+Now entries behaviour can be set. Available modes are: show everything, hide everything, and show only the first entry
+the homepage is not hardcoded anymore. It can be set in the config
+minor changes</li>
+KNOWN ISSUE: Using slide animation will probanly produce glitching, use fade instead 
  
-
-
 ////// Zcms 1.1.2 2011-11-28 //////
 -deprecation of old functions: xml2string
 -add support for loading php or html files. 

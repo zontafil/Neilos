@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<comments_8911_zcms_111 id="comments_8911_zcms_111" target="#8911_zcms_111_comments_text" animation="enabled">
-	<entry type="comment" id="1" author="m3l7" date="2011-09-08">
+	<entry id="comments_8911_zcms_111" author="m3l7" date="2011-09-08">
+		<config>
+			<target>#8911_zcms_111_comments</target>
+			<author>m3l7</author>
+			<date>2011-09-08</date>
+		</config>
 		<content>
 			<span>I'm becoming bored of being the only one who comments, lol</span>
 		</content>
 	</entry>
-</comments_8911_zcms_111>

@@ -1,20 +1,28 @@
-/*#menuentry_entry{
-		width:48px;
-		height:12px;
-		float:left;
-		margin-top:10px;
-		background-image:url(../img/anim_wait_small.gif);
-		visibility:hidden;
-}*/
-#menu_div{
+#menu{
 	position: fixed;
 	top: 0px;
 	/*background-color: #FFFFFF;*/
 	/*background-image: url(../img/nin_bg.jpg);*/
-	background-color: #000000;
-
+	background-color: #080808;
+	width: 100%;
+	border-bottom: solid;
+	border-bottom-color: rgba(112,45,40,0.5);
+	border-bottom-width: 1px
 }
-#menuentry_content_text{
+
+#menu .link{
+	float: left;
+	margin-top: 7px;
+}
+#menu .link a{
+	text-transform: lowercase;
+	padding-left: 0px;
+	font-variant: normal;
+	font-size: 17px;
+	margin-right: 10px;
+}
+
+#menu_content{
 	margin-top:10px;
 	width:900px;
 	height:30px;
@@ -26,7 +34,7 @@
 	/*background-color: rgba(112,45,40,0.5);*/
 
 }
-#menu_div ul
+#menu ul
 {
 	height: 0px;
 	position:relative;
@@ -36,10 +44,10 @@
 	padding-bottom:9px;
 	padding-right:0px;
 }
-#menu_div a:hover {
+#menu a:hover {
 color: #FFF;
 }
-#menu_div li
+#menu li
 {
 	display: inline;
 	padding-top:20px;
@@ -48,9 +56,9 @@ color: #FFF;
 	margin-left:0px;
 	height:25px;
 	/*background-image: url(../img/nin_bg.jpg);*/
-	background-color: #000000;
+	background-color: #080808;
 }
-#menu_div a {
+#menu a {
 	background-repeat: no-repeat;
 	background-position: right;
 	padding-top:0px;
@@ -68,7 +76,7 @@ color: #FFF;
 	/*color: #a40101;*/
 	/*color: #FFFFFF;*/
 	font-variant: small-caps;
-	font-weight:lighter;
+	font-weight:bold;
 }
 a
 {

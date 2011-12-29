@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<menu animation="disabled" clear="true" target="#menu_div_content">
-	<entry type="div" id="menuentry">  
-		<content>
+<entry id="menu">
+	<config>
+			<css id="menulal">resources/css/menu.css</css>
+			<!--<align_horiz>#menu_content</align_horiz>-->
+			<align_horiz>#menu</align_horiz>
+			<click source="a"></click>
+			<target>#menu</target>	
+			<display entries="ShowAll"></display>		
+	</config>
+	<content>
+			<div class="link"><a target="_blank" href="https://github.com/m3l7">github</a></div>
+			<div class="link"><a target="_blank" href="https://plus.google.com/u/0/110830573997605675189/posts">g+</a></div>
 			<ul class="menu_ul">
 			<li class="menu_li">
 			<a class="menu_a" href="#home.xml">home</a>
@@ -14,11 +23,5 @@
 			</li>
 
 			</ul>
-		</content>
-	</entry>
-	<config id="menu2">
-			<css id="menu">resources/css/menu.css</css>
-			<align_horiz>#menu_div</align_horiz>
-			<click source="a"></click>
-	</config>
-</menu>
+	</content>
+</entry>

@@ -10,7 +10,7 @@
 
 \usepackage{minted}
 
-\usepackage[italian]{babel}
+%\usepackage[italian]{babel}
 \usepackage{graphicx}
 \usepackage[intlimits]{amsmath}
 \usepackage{amsfonts}
@@ -21,24 +21,13 @@
 \usepackage{color}
 
 \begin{document}
-\lstdefinelanguage{XML}
-{
-  morestring=[b]",
-  morestring=[s]{>}{<},
-  morecomment=[s]{<?}{?>},
-  stringstyle=\color{black},
-  identifierstyle=\color{darkblue},
-  keywordstyle=\color{cyan},
-  morekeywords={xmlns,version,type},
-  backgroundcolor=\color{lightgray},
-  numbers=left,
-  numberstyle=\footnotesize\ttfamily\color{gray},
-  numbersep=0.5pt
-}
+
 \begin{center}
  \huge \bfseries {Zcms}
 \\[0.5cm]
 \end{center}
+\tableofcontents
+\newpage
 \section{Introduction}
 Zcms is a content managent system based almost completely on javascript. It is designed to be lightweight and fast and to use ajax for content loading. Furthermore, it is possible to use mysql, xml or both technologies to store content datas. Building a website with zcms should be as simple as writing a basic xml file.
 \section{Workflow of Zcms}
@@ -114,7 +103,7 @@ Set the default home page. See links section for informations about links meanin
 Load an external file. Zcms will add the content inside the jquery selector tag.
 \end{list}
 
-\section{entry}
+\section{Entry}
 Inside the same tag, there can be one or more entries. Entries can be tab or comments, with obvious meaning.
 \subsection{Entry attributes}
 \begin{list}{-}{}

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<projects clear="true" taget="#main_div" animation="enabled">
-	<entry type="tab" id="projectsentry">
-	<entrytitle>
+<entry id="projects">
+	<config>
+		<clear>true</clear>
+	</config>
+	<title>
 			<span>proJ3C72</span>
-	</entrytitle>
+	</title>
 	<content>
 			<p>
-			<li><a href="#Zcms">Zcms</a> - A javascript Web CMS -</li>
+			<li><a target="_blank" href="https://github.com/m3l7/Zcms">Zcms</a> - A javascript Web CMS -</li>
 			</p>
-			<b>Web Design:</b><li><a href="http://www.altai-traduzioni.com">Altai Traduzioni</a></li>
+			<b>Web Design:</b><li><a target="_blank" href="http://www.altai-traduzioni.com">Altai Traduzioni</a></li>
 	</content>
-	</entry>
-</projects>
+</entry>

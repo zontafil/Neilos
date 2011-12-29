@@ -1,12 +1,13 @@
 <php>
-<testphp clear="true" taget="#main_div" animation="enabled">
-	<entry type="tab" id="test">
-	<entrytitle>
+<entry id="testphp">
+	<config>
+		<clear>true</clear>
+	</config>
+	<title>
 			<span>PHP version</span>
-	</entrytitle>
+	</title>
 	<content>
-			<?php echo PHP_VERSION; ?>
+			<spana><?php echo PHP_VERSION; ?></spana>
 	</content>
-	</entry>
-</testphp>
+</entry>
 </php>

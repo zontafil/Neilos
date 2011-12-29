@@ -1,25 +1,39 @@
 body{
 	/*background-image: url(../img/nin_bg.jpg);*/
-	background-color: #000000;
+	background-color: #121212;
 }
-#main_div{
-	margin-top:50px;
+
+#main_title{
+	margin-top: 30px;
+}
+#main_title, #main_content{
+	height: 20px;
+	background-color: red;
+}
+
+.title author, .title date{
+	margin-right: 10px;
+	float: right;
+}
+
+#main{
+	margin-top:100px;
 	margin-left:auto;
 	margin-right:auto;
 	width:900px;
 	height:90%;	
 }
-#main_div .entry{
+#main .tab{
 	margin-bottom: 20px;
 }
-#main_div .title{
+#main .title{
 	cursor: default;
 	height: 27px;
 	background-color:rgba(145,145,145,0.5);
 	margin-left:auto;
 	margin-right:auto;
 }
-#main_div date, author{
+#main date, author{
 	font-family: "Courier New", Courier, monospace;
 	font-family: Impact, Charcoal, sans-serif;
 		font-family: Arial, Helvetica, sans-serif;
@@ -29,9 +43,9 @@ body{
 	color: #FFFFFF;
 	opacity: 1;	
 }
-#main_div .title_text{
+#main .title{
 	text-align:left;
-	padding-top:6px;
+	padding-top:10px;
 	padding-left:10px;
 	font-family: "Courier New", Courier, monospace;
 	font-family: Impact, Charcoal, sans-serif;
@@ -40,27 +54,30 @@ body{
 	font-size: 13px;
 	font-weight:lighter;
 	color: #FFFFFF;
-	float: left;
+	box-shadow: 0px -3px 20px black;
+	box-shadow: 0px -1px 10px black
 }
-#main_div .title_text:hover{
+#main .title:hover{
 	/*color: #000000;*/	
 }
-#main_div .title_text_right{
+#main .title_text_right{
 	float: right;
 	padding-right: 10px;
 	padding-top: 4px;
 }
-#main_div .content {	
+#main .content {	
 	padding: 0px 0;
 	padding-bottom:30px;
 	margin-bottom:0px;
 	background-color:rgba(145,145,145,0.3);
 	margin-left: 50px;
+	box-shadow: 0px 6px 20px black;
+	box-shadow: 0px 2px 10px black;
 }
-#main_div .content_text{
+#main .content{
 	margin-left:15px;
 	padding-top:20px;
-	padding-left:10px;
+	padding-left:20px;
 		font-family: "Courier New", Courier, monospace;
 			font-family: Arial, Helvetica, sans-serif;
 
@@ -69,65 +86,69 @@ body{
 	
 }
 
-#main_div .content_text li{
+#main .content li{
 	margin-top: 10px;
 }
-#main_div .content_text p{
+#main .content p{
 	margin-bottom: 30px;
 }
 
-#main_div .firstentry .content{
+#main .index1 .content{
 	/*background-color:rgba(204,0,0,0.1);*/
 		
 }
-#main_div .firstentry .title{
+#main .index1 .title{
 	background-color:rgba(112,45,40,0.5);
 }
-#main_div .title:hover{
+#main .title:hover{
 	background-color: rgba(145,145,145,1);
 }
-#main_div .firstentry .title:hover{
+#main .index1 .title:hover{
 	background-color:rgba(112,45,40,1);
 }
-#main_div .comment{
-	margin-left: 50px;
+#main .comments{
+	margin-left: 15px;
 }
-#main_div .comments .title_text{
-	font-size: 13px;
-	padding-bottom: 1px;
-}
-#main_div .comments .title_text_right{
+#main .comments .title_text_right{
 	font-size: 13px;
 	color: #FFFFFF;
 }
-#main_div .comments .title{
+#main .comments .title{
 	background-color:rgba(145,145,145,0.5);
 	height: 20px;
 	margin-top: 5px;
 }
-#main_div .comments .title_text{
+#main .comments .title{
 	padding: 2px;
 	padding-left: 5px;
+		font-size: 13px;
+	padding-bottom: 0px;
+	padding-top: 4px;
+
 }
-#main_div .comments .title_text_right{
+#main .comments .title_text_right{
 	padding: 0px;
 	padding-right: 5px;
 	padding-top: 2px;
 }
-#main_div .comments .title:hover{
+#main .comments .title:hover{
 	background-color: rgba(145,145,145,1);
 }
-#main_div a{
+
+#main li{
+	margin-left: 15px;
+}
+#main a{
 	color:#FFF;
 	/*text-decoration:none;*/
 	text-decoration = underline;
 	
 }
-#main_div b{
+#main b{
 	font-size: 13px;
 	color: #FFFFFF;
 	font-weight: 900; 
 }
-img.main_div{
+img.main{
 	width:auto;
 }
