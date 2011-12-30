@@ -10,7 +10,7 @@
 		<target>#main</target>
 		<load_file entryid="menu">resources/xml/menu.xml</load_file>
 		<load_file entryid="footer">resources/xml/footer.xml</load_file>
-		<animation speed="normal" type="fade">enabled</animation>
+		<animation speed="slow" type="slide">enabled</animation>
 		<home>#home.xml</home>
 		<display entries="showfirst"></display>
 		<clear>false</clear>

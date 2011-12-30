@@ -343,12 +343,15 @@ var Zcms = {
 
 							$(trg)[animfunc[0]](speed,function(){
 								$(trg).children().remove()
+								$(trg).attr('style','display: block;')
 								if (Zcms.config.get_config('skipcontent',id)[0]==undefined)
 									Zcms.tools.add_content(xml,id,trg,type)
-								$(trg)[animfunc[1]](speed)
 								Zcms.config.analize_config_post(id)
-								$(trg).find('#'+id+'_entry').attr('style','display: block;') 
+								//$(trg).find('#'+id+'_entry').attr('style','display: block;') 
 								if (Zcms.config.get_config('skipsubentries',id,true)!='true') Zcms.tools.load_entries(subentries,0)
+								/*$(trg)[animfunc[1]](speed,function(){
+									console.log('oh hai')
+								})*/
 								if ((next!='') && (next!=undefined)) next.apply(null,next_par)
 							})
 								
@@ -369,8 +372,6 @@ var Zcms = {
 					if (Zcms.config.get_config('skipcontent',id)[0]==undefined)
 						Zcms.tools.add_content(xml,id,trg,type)
 					Zcms.config.analize_config_post(id)
-					if (anim_on=='enabled') $(trg).find('#'+id+'_entry')[animfunc[1]](speed)
-					else $(trg).find('#'+id+'_entry').attr('style','display: block;')
 					if (Zcms.config.get_config('skipsubentries',id,true)!='true') Zcms.tools.load_entries(subentries,0)
 					if ((next!='') && (next!=undefined)) next.apply(null,next_par)
 				}
@@ -396,10 +397,6 @@ var Zcms = {
 					if ((tl.length!=0) || (aut.length!=0) || (dat.length!=0)){
 						//add title
 						Zcms.structure.new_tab(id,trg,type,'index'+e_index)
-						$(trg).find('#'+id+'_entry').attr('style','display: none;')
-						$(trg).find('#'+id+'_entry > .title').attr('style','display: none;')
-						$(trg).find('#'+id+'_entry > .title').children().remove()
-						$(trg).find('#'+id+'_entry > .comments').attr('style','display: none;')
 						
 						title = $('<div/>')
 						title.append(aut.clone())
@@ -411,9 +408,6 @@ var Zcms = {
 						//add content
 						Zcms.structure.new_tab(id,trg,type)
 						$(trg).find('#'+id+'_entry').attr('style','display: none;')
-						$(trg).find('#'+id+'_entry > .content').attr('style','display: none;')
-						$(trg).find('#'+id+'_entry > .content').children().remove()
-						$(trg).find('#'+id+'_entry > .comments').attr('style','display: none;')
 						
 						content = $('<div/>')
 						content.append($(xml).find('*').andSelf().filter('entry#'+id+' > content').clone().contents())
@@ -444,23 +438,30 @@ var Zcms = {
 				var speed = Zcms.config.get_config_obj("animation",id,true).last().attr('speed')
 	
 				if ((speed!='fast') && (speed!='normal') && (speed!='slow')) speed = 'normal'
-				animfunction=['toggle','show','hide']
+				var animfunction=['toggle','show','hide']
 				if ((anim_on!='enabled') || (disable_animation=="true")) {
 					speed=''
 				}
 				else if (anim_type=='fade') animfunction=['fadeToggle','fadeIn','fadeOut']
 				else if (anim_type=='slide') animfunction=['slideToggle','slideDown','slideUp']
 				
-				$('#'+id+'_entry > #'+id+'_title')[animfunction[1]](speed,function(){
+				if ($('#'+id+'_entry').is(':visible')==false){
 					$('#'+id+'_entry > #'+id+'_title').attr('style','display: block;')
-				})
-				$('#'+id+'_entry > #'+id+'_content')[animfunction[i]](speed,function(){
-					if (i==2) $('#'+id+'_entry > #'+id+'_content').attr('style','display: none;')
-					if (i==1) $('#'+id+'_entry > #'+id+'_content').attr('style','display: block;')
-				})
-
-				$('#'+id+'_entry > #'+id+'_comments')[animfunction[i]](speed)				
+					if (i==1) prp = 'block'
+					else prp = 'none'
+					$('#'+id+'_entry > #'+id+'_content').attr('style','display: '+prp+';')
+					$('#'+id+'_entry > #'+id+'_comments').attr('style','display: '+prp+';')
+				}
+				else{
+					$('#'+id+'_entry > #'+id+'_title')[animfunction[1]](speed,function(){
+						$('#'+id+'_entry > #'+id+'_content')[animfunction[i]](speed,function(){
+							$('#'+id+'_entry > #'+id+'_comments')[animfunction[i]](speed)
+						})
+					})
+				}
 				
+				$('#'+id+'_entry')[animfunction[1]](speed)
+								
 				if (i==1){
 					var cfg = $('#'+Zcms.config.config_parent).find('config#'+id+'_config > load_file[mode="LoadWhenShown"]')				
 					Zcms.config.load_xml_from_config(cfg,0,function(){cfg.remove()})
