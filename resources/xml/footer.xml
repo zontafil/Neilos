@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <entry id="footer">
+	<config>
+		<display mode="ShowAll"></display>
+		<animation>disabled</animation>
+	</config>
 	<content>
-		<span> Created with Zcms _$version</span>
+		<span> Created with Neilos _$version</span>
 	</content>
 	<config>
 			<css id="footer">resources/css/footer.css</css>

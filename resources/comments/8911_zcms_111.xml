@@ -4,6 +4,7 @@
 			<target>#8911_zcms_111_comments</target>
 			<author>m3l7</author>
 			<date>2011-09-08</date>
+			<display entries="show"></display>
 		</config>
 		<content>
 			<span>I'm becoming bored of being the only one who comments, lol</span>

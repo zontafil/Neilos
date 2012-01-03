@@ -2,13 +2,15 @@
 <entry id="projects">
 	<config>
 		<clear>true</clear>
+		<skipsubentries>false</skipsubentries>
+		<skipcontent>false</skipcontent>
 	</config>
 	<title>
-			<span>proJ3C72</span>
+			<span>Projects</span>
 	</title>
 	<content>
 			<p>
-			<li><a target="_blank" href="https://github.com/m3l7/Zcms">Zcms</a> - A javascript Web CMS -</li>
+			<li><a target="_blank" href="https://github.com/m3l7/Zcms">Neilos</a> - A javascript Web CMS -</li>
 			</p>
 			<b>Web Design:</b><li><a target="_blank" href="http://www.altai-traduzioni.com">Altai Traduzioni</a></li>
 	</content>

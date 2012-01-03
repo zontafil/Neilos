@@ -3,21 +3,16 @@ body{
 	background-color: #121212;
 }
 
-#main_title{
-	margin-top: 30px;
+#main_container{
+	margin-top: 100px;
 }
-#main_title, #main_content{
-	height: 20px;
-	background-color: red;
-}
-
 .title author, .title date{
 	margin-right: 10px;
 	float: right;
 }
 
 #main{
-	margin-top:100px;
+	/*margin-top:100px;*/
 	margin-left:auto;
 	margin-right:auto;
 	width:900px;
@@ -25,6 +20,9 @@ body{
 }
 #main .tab{
 	margin-bottom: 20px;
+}
+#main .tab:last-child{
+	margin-bottom: 0px;
 }
 #main .title{
 	cursor: default;
@@ -59,11 +57,6 @@ body{
 }
 #main .title:hover{
 	/*color: #000000;*/	
-}
-#main .title_text_right{
-	float: right;
-	padding-right: 10px;
-	padding-top: 4px;
 }
 #main .content {	
 	padding: 0px 0;
@@ -109,10 +102,6 @@ body{
 #main .comments{
 	margin-left: 15px;
 }
-#main .comments .title_text_right{
-	font-size: 13px;
-	color: #FFFFFF;
-}
 #main .comments .title{
 	background-color:rgba(145,145,145,0.5);
 	height: 20px;
@@ -125,11 +114,6 @@ body{
 	padding-bottom: 0px;
 	padding-top: 4px;
 
-}
-#main .comments .title_text_right{
-	padding: 0px;
-	padding-right: 5px;
-	padding-top: 2px;
 }
 #main .comments .title:hover{
 	background-color: rgba(145,145,145,1);

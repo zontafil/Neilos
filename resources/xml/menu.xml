@@ -2,11 +2,11 @@
 <entry id="menu">
 	<config>
 			<css id="menulal">resources/css/menu.css</css>
-			<!--<align_horiz>#menu_content</align_horiz>-->
 			<align_horiz>#menu</align_horiz>
 			<click source="a"></click>
 			<target>#menu</target>	
-			<display entries="ShowAll"></display>		
+			<display entries="ShowAll"></display>
+			<animation>disabled</animation>		
 	</config>
 	<content>
 			<div class="link"><a target="_blank" href="https://github.com/m3l7">github</a></div>

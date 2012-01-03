@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <entry id="main">
 	<config option="preserve">
-		<skipcontent></skipcontent>
-		<skipsubentries></skipsubentries>
+		<!-- <type>notitle</type> -->
+		<skipcontent>true</skipcontent>
+		<skipsubentries>true</skipsubentries>
 		<css id="main_win">resources/css/main.css</css>
 		<structure_div>menu</structure_div>
 		<structure_div>main</structure_div>
@@ -10,7 +11,7 @@
 		<target>#main</target>
 		<load_file entryid="menu">resources/xml/menu.xml</load_file>
 		<load_file entryid="footer">resources/xml/footer.xml</load_file>
-		<animation speed="slow" type="slide">enabled</animation>
+		<animation speedshow="#200" speedhide="#200" type="slide">enabled</animation>
 		<home>#home.xml</home>
 		<display entries="showfirst"></display>
 		<clear>false</clear>

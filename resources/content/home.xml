@@ -3,7 +3,34 @@
 
 	<config>
 		<clear>true</clear>
+		<skipsubentries>false</skipsubentries>
+		<skipcontent>false</skipcontent>
 	</config>
+
+	<entry id="030112_neilos_121">
+		<config>
+			<author>m3l7</author>
+			<date>2012-01-03</date>
+		</config>
+		<title>
+				<span>Neilos 1.2.1</span>
+		</title>
+		<content> 
+			<span> <b> Neilos 1.2.1</b>. Bug fixing release. I have changed the project name to Neilos, since
+			it was already used by other software.
+			</span>
+			<br />
+			<span>Changelog:</span>
+			<br />
+				<li>Every div created from config has an additional container</li>
+				<li>Animations are loaded serially. No more glitching.</li>
+				<li>It is now possible to specify animation speed in ms using speed=&#34;#1000&#34;</li>
+				<li>hide and show animations settings can be set individually</li>
+				<li>Title of entries can be ignored using notitle in config</li>
+				<li>Documentation updated</li>
+			<br />
+			</content> 
+	</entry>
 
 	<entry id="291211_zcms_12">
 		<config>
@@ -35,8 +62,7 @@
 			BRB.
 			</content> 
 	</entry>
-
-
+	
 	<entry id="291111_zcms_112">
 		<config>
 			<author>m3l7</author>
@@ -85,8 +111,7 @@
 			<span>Stay tuned.</span>
 		</content>
 	</entry>
-
-	<entry id="7911_zcms_11" date="2011-09-07" author="m3l7">
+		<entry id="7911_zcms_11" date="2011-09-07" author="m3l7">
 		<config>
 			<author>m3l7</author>
 			<date>2011-09-07</date>
@@ -168,5 +193,5 @@
 				<span>Plaoo@all</span>
 			</content>
 	</entry>
-</entry>
 
+</entry>
