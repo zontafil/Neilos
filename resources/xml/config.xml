@@ -12,7 +12,7 @@
 		<load_file entryid="menu">resources/xml/menu.xml</load_file>
 		<load_file entryid="footer">resources/xml/footer.xml</load_file>
 		<animation speedshow="#200" speedhide="#200" type="slide">enabled</animation>
-		<home>#home.xml</home>
+		<home>#!home.xml</home>
 		<display entries="showfirst"></display>
 		<clear>false</clear>
 	</config>

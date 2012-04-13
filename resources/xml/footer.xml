@@ -3,12 +3,10 @@
 	<config>
 		<display mode="ShowAll"></display>
 		<animation>disabled</animation>
+		<css id="footer">resources/css/footer.css</css>
+		<target>#footer</target>
 	</config>
 	<content>
 		<span> Created with Neilos _$version</span>
 	</content>
-	<config>
-			<css id="footer">resources/css/footer.css</css>
-			<target>#footer</target>
-	</config>
 </entry>

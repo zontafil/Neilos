@@ -13,13 +13,13 @@
 			<div class="link"><a target="_blank" href="https://plus.google.com/u/0/110830573997605675189/posts">g+</a></div>
 			<ul class="menu_ul">
 			<li class="menu_li">
-			<a class="menu_a" href="#home.xml">home</a>
+			<a class="menu_a" href="#!home.xml">home</a>
 			</li>
 			<li class="menu_li">
-			<a class="menu_a" href="#projects.xml">projects</a>
+			<a class="menu_a" href="#!projects.xml">projects</a>
 			</li>
 			<li class="menu_li">
-			<a class="menu_a" href="#testphp.php">testphp</a>
+			<a class="menu_a" href="#!testphp.php">testphp</a>
 			</li>
 
 			</ul>

@@ -258,7 +258,8 @@ var Neilos = {
 				if (Neilos.config.get_config('server')=='true') srv=true
 				
 			  if (path.substr(0,1)=='#'){
-				path = path.substring(1,path.length)
+				path = path.substring(2,path.length)
+				//console.log(path)
 				if (srv=='true'){
 					//php or server tech enabled
 				}
@@ -413,8 +414,10 @@ var Neilos = {
 						e_index = parseInt(l)+1
 					}
 					var tl = $(xml).find('*').andSelf().filter('entry#'+id+' > title')
-					var aut  = $('config#'+id+'_config > author')
-					var dat = $('config#'+id+'_config > date')
+					var aut = $(xml).find('*').andSelf().filter('entry#'+id+' > config > author')
+					var dat = $(xml).find('*').andSelf().filter('entry#'+id+' > config > date')
+					//var aut  = $('config#'+id+'_config > author')
+					//var dat = $('config#'+id+'_config > date')
 					
 					if (!$(trg).find('#'+id+'_entry').length) var hide = 1
 					
