@@ -4,6 +4,7 @@
 		<clear>true</clear>
 		<skipsubentries>false</skipsubentries>
 		<skipcontent>false</skipcontent>
+		<title>Neilos - Test Page</title>
 	</config>
 	<title>
 			<span>PHP version</span>

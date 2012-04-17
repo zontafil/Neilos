@@ -127,6 +127,10 @@ var Neilos = {
 			cfg.find('home').each(function(){
 				Neilos.home = $(this).text()
 			})
+			cfg.find('title').each(function(){
+				if ($('head title').length==0) $('head').append('<title/>')
+				$('head title').eq(0).text($(this).text())
+			})
 			if ((next!='') && (next!=undefined)) next.apply(null,next_par)
 			
 		},
@@ -252,24 +256,25 @@ var Neilos = {
 			$("link[rel=stylesheet][href='"+filename+"']").remove()
 		},
 		
-		open_link_tab : function(path){
+		open_link_tab : function(filename){
 			//open_link_tab: open link
-				srv=false
-				if (Neilos.config.get_config('server')=='true') srv=true
-				
-			  if (path.substr(0,1)=='#'){
-				path = path.substring(2,path.length)
-				//console.log(path)
-				if (srv=='true'){
-					//php or server tech enabled
-				}
-				else{
-					//use only xml reading through ajax
-					Neilos.tools.add_file('resources/content/'+path,path.split('.')[0],Neilos.config.config_file_tag)
+			  if (filename.substr(0,1)=='#'){
+				filename = filename.substring(2,filename.length)
+				path = 'resources/content/'+filename,filename.split('.')[0]
+				Neilos.tools.add_file(path,filename.split('.')[0],Neilos.config.config_file_tag,function(res){
+					if (!res) Neilos.tools.add_file(path+'.xml',filename.split('.')[0],Neilos.config.config_file_tag,function(res){
+						Neilos.tools.add_file(path+'.php',filename.split('.')[0],Neilos.config.config_file_tag)
+					},'_pass_result')
+				},'_pass_result')
 					
-				}
+			/*		console.log("asd")
+					if (!Neilos.tools.add_file('resources/content/'+path,path.split('.')[0]+'.xml',Neilos.config.config_file_tag)){
+						Neilos.tools.add_file('resources/content/'+path,path.split('.')[0]+'.php',Neilos.config.config_file_tag)
+					}
+				}*/
 			  }
 		},
+		dioporco : function(res){console.log(res)},
 		add_file : function(path,id,parent,next){
 			//add a file to the DOM. Seeks for the proper id, and call next when done.
 			// parent is optional.. It is useful only for config ereditariety
@@ -283,7 +288,10 @@ var Neilos = {
 			dataType: "xml",
 			success: function(xml){
 				if (!$(xml).find('entry#'+id).length){
-					if ((next!='') && (next!=undefined)) next.apply(null,params)
+					if ((next!='') && (next!=undefined)){
+						if (params[0]=='_pass_result') next(true)
+						else next.apply(null,params)
+					} 
 				}
 				else{
 					//id found. Load it with add_entry
@@ -291,9 +299,12 @@ var Neilos = {
 				}
 			},
 			error: function(){
-				console.log('error loafing file '+path)
-				if ((next!='') && (next!=undefined)) next.apply(null,params)
-				return false}
+				if (Neilos.config.debug) console.log('error loafing file '+path)
+				if ((next!='') && (next!=undefined)){
+					if (params[0]=='_pass_result') next(false) 
+					else next.apply(null,params)
+				} 
+			}
 			})
 		},
 		add_entry: function (xml,id,parent,next){

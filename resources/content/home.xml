@@ -5,7 +5,30 @@
 		<clear>true</clear>
 		<skipsubentries>false</skipsubentries>
 		<skipcontent>false</skipcontent>
+		<title>Neilos - Home</title>
 	</config>
+
+	<entry id="170412_neilos_122">
+		<config>
+			<author>m3l7</author>
+			<date>2012-04-17</date>
+		</config>
+		<title>
+				<span>Neilos 1.2.2</span>
+		</title>
+		<content> 
+			<span> <b> Neilos 1.2.2</b>. Main feature is google crawler support
+			</span>
+			<br />
+			<span>Changelog:</span>
+			<br />
+				<li>add a load.php that load an alternative (very minimal ATM!) version of the site. Used with google bot.. A proper index.php is required to load the script</li>
+				<li>title support</li>
+				<li>extension of the url of the pages is not necessary anymore (i.e. .xml and .php)</li>
+			<br />
+			</content> 
+	</entry>
+
 
 	<entry id="030112_neilos_121">
 		<config>

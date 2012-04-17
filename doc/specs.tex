@@ -23,13 +23,14 @@
 \begin{document}
 
 \begin{center}
- \huge \bfseries {Neilos}
+ \huge \bfseries {Neilos}\\
+ \normalfont \normalsize Version 1.2.2
 \\[0.5cm]
 \end{center}
 \tableofcontents
 \newpage
 \section{Introduction}
-Neilos is a content managent system based almost completely on javascript. It is designed to be lightweight and fast and to use ajax for content loading. Furthermore, it is possible to use mysql, xml or both technologies to store content datas. Building a website with Neilos should be as simple as writing a basic xml file.
+Neilos is a content management system based almost completely on javascript. It is designed to be lightweight and fast and to use ajax for content loading. Furthermore, it is possible to use mysql, xml or both technologies to store content datas. Building a website with Neilos should be as simple as writing a basic xml file.
 \section{Workflow of Neilos}
 The first thing Neilos does is loading resources/xml/config.xml, which is the main configuration of the site. The main config usually (but not mandatory) loads the css styles, add the layout divs (see Structure section), and sets global variables, like default target or default animation. Thereafter, the main config loads other external files, which can add articles, comments, html, php code or load in turn other files. Every external file must be loaded with an $entryid$ parameter that tells Neilos which part of the file (entry) is to be added. \\
 \includegraphics[scale=0.7]{Diagramma_neilos.png} 
@@ -66,6 +67,10 @@ This behaviour can eventually be changed with some options (see below). If both 
 The config tag is useful to load additionals xml,css,php files or to set useful settings.\\
 Almost all options are inheritable to subentries. Available options are:
 \begin{list}{-}{}
+\item \begin{minted}{xml}
+<title>       
+      \end{minted}
+Change the title of the page
 \item \begin{minted}{xml}
 <css id='css_id'>       
       \end{minted}
@@ -145,5 +150,10 @@ Structure objects can be created using the following methods:
         \end{minted}
 create a div and a subdiv \_content. It is created at the end of the current DOM, so it should be used only in the main config. It must be placed inside $<$config$>$ tag.
 \end{list}
+
+\section{SEO}
+Starting from version 1.2.2, Neilos can be indicized by Google, using the standard \_escaped\_fragment method.\\
+A load.php and a modified index.php is provided, which can load the site using php only code.
+At the moment, load.php loads all the content, but generally not in the correct order and with the correct containers; for this readon it is not suitable for every day use as a replacement for the default js code.
 
 \end{document}
