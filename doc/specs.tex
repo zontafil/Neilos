@@ -35,7 +35,8 @@ Neilos is a content management system based almost completely on javascript. It 
 The first thing Neilos does is loading resources/xml/config.xml, which is the main configuration of the site. The main config usually (but not mandatory) loads the css styles, add the layout divs (see Structure section), and sets global variables, like default target or default animation. Thereafter, the main config loads other external files, which can add articles, comments, html, php code or load in turn other files. Every external file must be loaded with an $entryid$ parameter that tells Neilos which part of the file (entry) is to be added. \\
 \includegraphics[scale=0.7]{Diagramma_neilos.png} 
 \subsection{Menu links}
-A typical menu link points to index.html\#page.xml\ \ .Neilos will load automatically page.xml and will add it to the site with ajax. The file must be located in resources/content/
+A typical menu link points to index.html\#!page.xml\ \ .Neilos will load automatically page.xml and will add it to the site with ajax. The file must be located in resources/content/.\\
+If the file is not found and no extension is provided, Neilos will try to add .xml and .php extensions to the file name.
 \section{Entries Anatomy}
 Every file is loaded with an $entryid$ parameter. Neilos search for the entry with the id supplied. For php files, the entry must be enclosed in at least one other element. For xml files, the entry can be the ancestor of the document.\\
 An entry consists of 3 main sections: config, title and content. There can be also subentries.\\
@@ -125,6 +126,11 @@ If true, subentries will be ignored.
 <type>notitle</type>
 \end{minted}
 If set, title will be ignored.
+\item \begin{minted}{xml}
+<default_extension>xml</default_extension>
+\end{minted}
+Set the default extension of content files. Can be xml or php and can be set only in the main config (config.xml)\\
+Neilos will cycle throigh the other extensions automatically if the file is not found.
 \end{list}
 \normalsize
 \section{Variables}

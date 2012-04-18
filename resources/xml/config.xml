@@ -15,5 +15,6 @@
 		<home>#!home.xml</home>
 		<display entries="showfirst"></display>
 		<clear>false</clear>
+		<default_extension>xml</default_extension>
 	</config>
 </entry>

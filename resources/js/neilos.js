@@ -1,7 +1,7 @@
 
 var Neilos = {
 	config : {
-		version : "1.2.1",
+		version : "1.2.2",
 		debug : false,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
@@ -23,8 +23,7 @@ var Neilos = {
 			$('#'+Neilos.config.config_parent).css('height','0px')
 		},
 		get_config : function(cfg,id,eredit){
-			//return an array af all config found. if id is set, search inside its config. If eredit is true, search for
-			//parents config.
+			//return an array af all config found. if id is set, search inside its config.
 			if (!Neilos.config.initialized) return ""
 			var list = new Array()
 			if ((id==undefined) || (id=='')) id=Neilos.config.config_file_tag
@@ -259,22 +258,28 @@ var Neilos = {
 		open_link_tab : function(filename){
 			//open_link_tab: open link
 			  if (filename.substr(0,1)=='#'){
-				filename = filename.substring(2,filename.length)
+			  	var default_ext = Neilos.config.get_config('default_extension')[0]
+			  	if ((default_ext!='xml') && (default_ext!='php')) default_ext = ''
+			  	fs = filename.split('.')
+			  	if (fs.length>1) ext = fs[fs.length-1]
+			  	else ext = ''
+			  	filename = filename.substring(2,filename.length)
 				path = 'resources/content/'+filename,filename.split('.')[0]
-				Neilos.tools.add_file(path,filename.split('.')[0],Neilos.config.config_file_tag,function(res){
-					if (!res) Neilos.tools.add_file(path+'.xml',filename.split('.')[0],Neilos.config.config_file_tag,function(res){
-						Neilos.tools.add_file(path+'.php',filename.split('.')[0],Neilos.config.config_file_tag)
-					},'_pass_result')
-				},'_pass_result')
+			  	
+			  	if ((ext=='php') || (ext=='xml')) Neilos.tools.add_file(path,filename.split('.')[0],Neilos.config.config_file_tag)
+				else{
+					if (default_ext=='php') var exttry = new Array('.php','','.xml')
+					else if (default_ext=='xml') var exttry = new Array('.xml','','.php')
+					else var exttry = new Array('','.xml','.php')
 					
-			/*		console.log("asd")
-					if (!Neilos.tools.add_file('resources/content/'+path,path.split('.')[0]+'.xml',Neilos.config.config_file_tag)){
-						Neilos.tools.add_file('resources/content/'+path,path.split('.')[0]+'.php',Neilos.config.config_file_tag)
-					}
-				}*/
+					Neilos.tools.add_file(path+exttry[0],filename.split('.')[0],Neilos.config.config_file_tag,function(res){
+						if (!res) Neilos.tools.add_file(path+exttry[1],filename.split('.')[0],Neilos.config.config_file_tag,function(res){
+							Neilos.tools.add_file(path+exttry[2],filename.split('.')[0],Neilos.config.config_file_tag)
+						},'_pass_result')
+					},'_pass_result')
+				}
 			  }
 		},
-		dioporco : function(res){console.log(res)},
 		add_file : function(path,id,parent,next){
 			//add a file to the DOM. Seeks for the proper id, and call next when done.
 			// parent is optional.. It is useful only for config ereditariety
