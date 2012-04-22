@@ -63,6 +63,7 @@ var Neilos = {
 			
 			//analize_config_post: check for config after adding the content
 			var cfg = $('#'+Neilos.config.config_parent).find('#'+id+'_config')
+			
 			cfg.find('align_horiz').each(function(){
 				w = $(this).text()
 				dim = ($(window).width()-$(w).width())/2
@@ -73,6 +74,31 @@ var Neilos = {
 				})
 			})
 			
+			//add additional classes to entry
+			cfg.find('class').each(function(){
+				$('#'+id+'_entry').addClass($(this).text())
+			})
+			
+			//add default onclick event --> hide, show entry
+			$('#'+id+'_entry > #'+id+'_title').off('click')
+			$('#'+id+'_entry > #'+id+'_title').click(function(){
+				str = $(this).parent().attr('id')
+				Neilos.tools.toggle_entry(str.substring(0,str.indexOf('_entry')))
+			})
+			
+			//add additional onclick events
+			cfg.find('click').each(function(){
+				var href = $(this).attr('href')
+				var remove = $(this).attr('remove')
+				if ($(this).attr('prevent_default')=='true') $('#'+id+'_entry > #'+id+'_title').off('click')
+				$('#'+id+'_entry').off('click')
+				$('#'+id+'_entry').click(function(event){
+					  if (remove=='true') Neilos.tools.remove_entry(id)
+					  if ((href!='') && (href!=undefined)) Neilos.tools.open_link_tab(href)
+				})
+			})
+
+
 			//decide if the entry should be visible or not
 			var skip = Neilos.config.get_config('skipcontent',id) 
 			var tagl = cfg.find('load_file[mode!="LoadWhenShown"]')
@@ -90,6 +116,7 @@ var Neilos = {
 				else
 					Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.load_xml_from_config,tagl,0],next_par))
 			}
+			//skip the content, should be loaded when the entry is toggled
 			else
 				Neilos.config.load_xml_from_config.apply(null,$.merge([tagl,0],next_par))
 		},
@@ -105,12 +132,7 @@ var Neilos = {
 			cfg.find('css').each(function(){
 				Neilos.tools.load_css_config($(this).text(),$(this).attr('id'),id,false)
 			})
-			cfg.find('click').each(function(){
-				$($(this).attr('source')).click(function(event){
-					  var path = $(this).attr('href')
-					  Neilos.tools.open_link_tab(path)
-				})
-			})
+
 			cfg.find('structure_tab, structure_div').each(function(){
 				var parent = $(this).attr('parent')
 				if ((parent!='') || (parent==undefined)) parent='#'+Neilos.config.container_div
@@ -257,28 +279,34 @@ var Neilos = {
 		
 		open_link_tab : function(filename){
 			//open_link_tab: open link
-			  if (filename.substr(0,1)=='#'){
-			  	var default_ext = Neilos.config.get_config('default_extension')[0]
-			  	if ((default_ext!='xml') && (default_ext!='php')) default_ext = ''
-			  	fs = filename.split('.')
-			  	if (fs.length>1) ext = fs[fs.length-1]
-			  	else ext = ''
-			  	filename = filename.substring(2,filename.length)
-				path = 'resources/content/'+filename,filename.split('.')[0]
-			  	
-			  	if ((ext=='php') || (ext=='xml')) Neilos.tools.add_file(path,filename.split('.')[0],Neilos.config.config_file_tag)
-				else{
-					if (default_ext=='php') var exttry = new Array('.php','','.xml')
-					else if (default_ext=='xml') var exttry = new Array('.xml','','.php')
-					else var exttry = new Array('','.xml','.php')
-					
-					Neilos.tools.add_file(path+exttry[0],filename.split('.')[0],Neilos.config.config_file_tag,function(res){
-						if (!res) Neilos.tools.add_file(path+exttry[1],filename.split('.')[0],Neilos.config.config_file_tag,function(res){
-							Neilos.tools.add_file(path+exttry[2],filename.split('.')[0],Neilos.config.config_file_tag)
-						},'_pass_result')
+			if (Neilos.config.debug) console.log("open_link "+filename)
+			
+		  	fs_p = filename.split('?')
+		  	if (fs_p.length>1) php_get = '?'+fs_p[1]
+		  	else php_get = ''
+		  	filename = fs_p[0]
+		  	
+		  	var default_ext = Neilos.config.get_config('default_extension')[0]
+		  	if ((default_ext!='xml') && (default_ext!='php')) default_ext = ''
+		  	
+		  	fs = filename.split('.')
+		  	if (fs.length>1) ext = fs[fs.length-1]
+		  	else ext = ''
+		  	
+			path = 'resources/content/'+fs[0]
+		  	
+		  	if ((ext=='php') || (ext=='xml')) Neilos.tools.add_file(path+'.'+ext+php_get,fs[0],Neilos.config.config_file_tag)
+			else{
+				if (default_ext=='php') var exttry = new Array('.php'+php_get,'','.xml')
+				else if (default_ext=='xml') var exttry = new Array('.xml','','.php'+php_get)
+				else var exttry = new Array('','.xml','.php'+php_get)
+				
+				Neilos.tools.add_file(path+exttry[0],fs[0],Neilos.config.config_file_tag,function(res){
+					if (!res) Neilos.tools.add_file(path+exttry[1],fs[0],Neilos.config.config_file_tag,function(res){
+						Neilos.tools.add_file(path+exttry[2],fs[0],Neilos.config.config_file_tag)
 					},'_pass_result')
-				}
-			  }
+				},'_pass_result')
+			}
 		},
 		add_file : function(path,id,parent,next){
 			//add a file to the DOM. Seeks for the proper id, and call next when done.
@@ -292,6 +320,7 @@ var Neilos = {
 			url: path,
 			dataType: "xml",
 			success: function(xml){
+				//debugger
 				if (!$(xml).find('entry#'+id).length){
 					if ((next!='') && (next!=undefined)){
 						if (params[0]=='_pass_result') next(true)
@@ -299,12 +328,14 @@ var Neilos = {
 					} 
 				}
 				else{
+					//TODO: add pass_result
 					//id found. Load it with add_entry
 					Neilos.tools.add_entry.apply(null,$.merge([xml,id,parent,next],params))
 				}
 			},
 			error: function(){
-				if (Neilos.config.debug) console.log('error loafing file '+path)
+				//debugger
+				if (Neilos.config.debug) console.log('error loading file '+path)
 				if ((next!='') && (next!=undefined)){
 					if (params[0]=='_pass_result') next(false) 
 					else next.apply(null,params)
@@ -314,36 +345,52 @@ var Neilos = {
 		},
 		add_entry: function (xml,id,parent,next){
 			//add_entry: Load an entry.. --> loads config and content
+			
+			//WARNING: if a previous config is found, it is not overwritten (the new config is merged)
+			//problem?
+			
 			if (Neilos.config.debug) console.log('add_entry '+id+' '+parent)
 			
 			var next_par = Array.prototype.slice.call(arguments,3)
 			
 			//analyze config					
 			var same_config = $('#'+Neilos.config.config_parent).find('config#'+id+'_config')
-			if ((!same_config.length) && ($(xml).find('*').andSelf().filter('entry#'+id+' > config').children().length)){
+			if (($(xml).find('*').andSelf().filter('entry#'+id+' > config').children().length)){
 
 				if ($(xml).find('*').andSelf().filter('entry#'+id+' > config > clear').text()=='true'){
+					//we have to clear the target's configs
 					var trg = $(xml).find('*').andSelf().filter('entry#'+id+' > config > target').text()
 					if ((trg==undefined) || (trg=='')) trg = Neilos.config.get_config('target',parent,true)[0]
 					Neilos.config.remove_config_from_trg(trg)
+					same_config.length=0
 				}
 				
-				//add config div to the DOM		
-				var obj2 = $(xml).find('*').andSelf().filter('entry#'+id+' > config').attr('id',id+'_config').clone()
-				var $div2 = $("<div/>").append(obj2);
-				
-				$('#'+Neilos.config.config_parent).append($div2.html());
+				//add config div to the DOM
+						
+				if (same_config.length<=0){
+					var obj2 = $(xml).find('*').andSelf().filter('entry#'+id+' > config').attr('id',id+'_config').clone()
+					var $div2 = $("<div/>").append(obj2);	
+					$('#'+Neilos.config.config_parent).append($div2.html());	
+				}
+				else{
+					var obj2 = $(xml).find('*').andSelf().filter('entry#'+id+' > config').attr('id',id+'_config').children().clone()
+					var $div2 = $("<div/>").append(obj2);
+					same_config.eq(0).append($div2.html())
+				}				
 				if ((parent!='') && (parent!=undefined)) $('config#'+id+'_config').attr('parent',parent)
 				Neilos.config.analize_config.apply(null,$.merge([id,Neilos.tools.add_content_check,xml,id],next_par))
 			}
-			//no config found, load add_content directly
 			else {
-				var $obj = $('<config/>')
-				$obj.attr('id',id+'_config')
-				if ((parent!=undefined) && (parent!='')) $obj.attr('parent',parent)
-				$('#'+Neilos.config.config_parent).append($obj);
+					if (same_config.length<=0){
+						var $obj = $('<config/>')
+						$obj.attr('id',id+'_config')
+						if ((parent!=undefined) && (parent!='')) $obj.attr('parent',parent)
+						$('#'+Neilos.config.config_parent).append($obj);
+					}
+				
 				Neilos.tools.add_content_check.apply(null,$.merge([xml,id],next_par))
 			}
+			
 		},
 		add_content_check : function (xml,id,next){
 				//add_content.   Add the content from an xml object.
@@ -354,7 +401,7 @@ var Neilos = {
 				var next_par = Array.prototype.slice.call(arguments,3)
 				
 				//prepare the target
-				var clr = Neilos.config.get_config('clear',id)[0]
+				var clr = Neilos.config.get_config('clear',id).pop()
 				var trg = Neilos.config.get_config('target',id,true)[0]
 				
 				var type = Neilos.config.get_config('type',id,true)[0]
@@ -463,12 +510,6 @@ var Neilos = {
 						$(trg).find('#'+id+'_entry > #'+id+'_content').children().remove()
 						$(trg).find('#'+id+'_entry > #'+id+'_content').append(content)	
 
-						//add onclick event --> hide, show entry
-						$(trg).find('#'+id+'_entry > #'+id+'_title').off('click')
-						$(trg).find('#'+id+'_entry > #'+id+'_title').click(function(){
-							str = $(this).parent().attr('id')
-							Neilos.tools.toggle_entry(str.substring(0,str.indexOf('_entry')))
-						})
 					}
 				}  
 		},
@@ -579,6 +620,18 @@ var Neilos = {
 			if ((parent=='') || (parent==undefined)) return false
 			Neilos.tools.add_entry.apply(null,$.merge([tag,id,parent,Neilos.tools.load_entries,tag,index+1,next],params))		
 		},
+		
+		remove_entry : function(id,next){
+			//remove an entry
+			if (Neilos.config.debug) console.log('removing entry '+id)
+
+			params = Array.prototype.slice.call(arguments,3)
+						
+			if ($('#'+id+'_entry').length<1) if ((next!=undefined) && (next!='')) next.apply(null,params)
+			Neilos.config.remove_config_id(id)
+			$('#'+id+'_entry').remove()
+			if ((next!=undefined) && (next!='')) next.apply(null,params)
+		}
 	},
 	
 	init : function() {
@@ -591,11 +644,15 @@ var Neilos = {
 		//main, open #home page
 		var hash = window.location.hash;
 		if ((hash=='') || (hash==undefined)) hash=Neilos.home
+		else if (hash.substr(1,1)=='!') hash = hash.substr(2,hash.length)
+		else hash = hash.substr(1,hash.length)
 		Neilos.tools.open_link_tab(hash)
 		
 		$(window).hashchange(function(){
 			var hash = window.location.hash;
 			if ((hash=='') || (hash==undefined)) hash=Neilos.home
+			else if (hash.substr(1,1)=='!') hash = hash.substr(2,hash.length)
+			else hash = hash.substr(1,hash.length)
 			Neilos.tools.open_link_tab(hash)
 		})
 		
@@ -603,13 +660,3 @@ var Neilos = {
 }
 
 $(document).ready(Neilos.init)
-
-
-
-
-
-
-
-
-
-

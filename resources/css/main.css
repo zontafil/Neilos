@@ -1,6 +1,8 @@
 body{
 	/*background-image: url(../img/nin_bg.jpg);*/
 	background-color: #121212;
+	/*background-image: url(../img/back_bw.jpg)*/
+	/*background-image: url(../img/17252.png);*/
 }
 
 #main_container{
@@ -53,7 +55,8 @@ body{
 	font-weight:lighter;
 	color: #FFFFFF;
 	box-shadow: 0px -3px 20px black;
-	box-shadow: 0px -1px 10px black
+	box-shadow: 0px -1px 10px black;
+	border-radius: 5px;
 }
 #main .title:hover{
 	/*color: #000000;*/	
@@ -136,3 +139,25 @@ body{
 img.main{
 	width:auto;
 }
+
+#container #main div.tab.more_button{
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#container #main div.tab.more_button .title{
+	text-align: center;
+	padding-left: 0px;
+	height: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+
+
+
+
+
+
+
+

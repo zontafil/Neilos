@@ -7,7 +7,6 @@
 "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en-US">
 <head>
-
 <?php if (count($esc)>0) {$head=TRUE; include "load.php";} ?>
 <?php if (count($esc)<=0) echo '<meta name="fragment" content="!">'; ?>
 
@@ -26,8 +25,8 @@ if (count($esc)<=0) echo '
 '; ?>
 
 		<?php if ($_ANALYTICS==TRUE) echo "
-              var _gaq = _gaq || [];
 		<script type='text/javascript'>
+              var _gaq = _gaq || [];
               _gaq.push(['_setAccount', '$_ANALYTICS_ID']);
               _gaq.push(['_trackPageview','/']);
 

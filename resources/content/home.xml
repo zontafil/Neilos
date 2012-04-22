@@ -8,6 +8,29 @@
 		<title>Neilos - Home</title>
 	</config>
 
+	<entry id="230412_neilos_13">
+		<config>
+			<author>m3l7</author>
+			<date>2012-04-23</date>
+		</config>
+		<title>
+				<span>Neilos 1.3</span>
+		</title>
+		<content> 
+			<span> <b> Neilos 1.3</b>. New major release with plugins support!
+			</span>
+			<br />
+			<span>Changelog:</span>
+			<br />
+				<li>brand new server side plugin infrastructure</li>
+				<li>added the &#39;more&#39; plugin</li>
+				<li>added a class config for adding additional classes to entries</li>
+				<li>added a click config which opens an internal link when an entry is clicked</li>
+				<li>added a default_extension option. Can be xml or php</li>
+				<li>configs of entries with the same id are now merged</li>
+		</content> 
+	</entry>
+
 	<entry id="170412_neilos_122">
 		<config>
 			<author>m3l7</author>

@@ -3,7 +3,6 @@
 	<config>
 			<css id="menulal">resources/css/menu.css</css>
 			<align_horiz>#menu</align_horiz>
-			<click source="a"></click>
 			<target>#menu</target>	
 			<display entries="ShowAll"></display>
 			<animation>disabled</animation>		
@@ -13,7 +12,7 @@
 			<div class="link"><a target="_blank" href="https://plus.google.com/u/0/110830573997605675189/posts">g+</a></div>
 			<ul class="menu_ul">
 			<li class="menu_li">
-			<a class="menu_a" href="#!home">home</a>
+			<a class="menu_a" href="#!home_more">home</a>
 			</li>
 			<li class="menu_li">
 			<a class="menu_a" href="#!projects">projects</a>
@@ -21,7 +20,6 @@
 			<li class="menu_li">
 			<a class="menu_a" href='#!testphp'>testphp</a>
 			</li>
-
 			</ul>
 	</content>
 </entry>

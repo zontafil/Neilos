@@ -131,6 +131,15 @@ If set, title will be ignored.
 \end{minted}
 Set the default extension of content files. Can be xml or php and can be set only in the main config (config.xml)\\
 Neilos will cycle throigh the other extensions automatically if the file is not found.
+\item \begin{minted}{xml}
+<class>optionalclass</class>
+\end{minted}
+Add an additional class to the entry.
+\item \begin{minted}{xml}
+<click prevent_default='true' href='filename' remove='true'></click>
+\end{minted}
+Open an internal link (specified by href) when the entry is clicked. If prevent\_default is set, the normal toggle behaviour is avoided.\\
+If remove is set, the entry is removed after being clicked.
 \end{list}
 \normalsize
 \section{Variables}
@@ -162,4 +171,36 @@ Starting from version 1.2.2, Neilos can be indicized by Google, using the standa
 A load.php and a modified index.php is provided, which can load the site using php only code.
 At the moment, load.php loads all the content, but generally not in the correct order and with the correct containers; for this readon it is not suitable for every day use as a replacement for the default js code.
 
+\section{Plugins}
+Starting from Neilos 1.3, it is possible to add server side (php) plugins. To use them, one should use as content a simple php file which includes the plugins engine (content\_loader.php), and calls load\_file, which finally loads the real data file (xml or php).\\
+The arrays \$plugin[] and \$param[] are used to specify the list of plugins to load and their parameters.\\
+Below is reported an example content file
+
+
+\begin{minted}{php}
+<?php
+include_once '../plugin/content_loader.php';
+
+$file = 'home.xml';	#real data file
+$tag_in='home';		#tag of the data file
+$tag_out='home_more';	#tag of the output file
+
+$plugins = array('more');	#list of plugins to load
+
+$param = array();		#parameter array
+
+$param['_more_id']='home';	#id, used to identify univocally this file
+$param['_more_home_num_per_page']=3;	#parameters of the more plugin
+$param['_more_home_show_more']=1;	#correct syntax is _plugin_id_parameter
+
+load_file($file,$tag_in,$tag_out);
+?>
+\end{minted}
+\subsection{List of plugins}
+\subsubsection{more} more\\
+more plugin prevents neilos to load the whole content file if the number of entries is big.\\
+It is possible to specify how many entries have to be shown at the same time.\\
+\bfseries Parameters:\\
+\normalfont \normalsize -num\_per\_page: number of entries to display in a single 'page'.\\
+-show\_more: if set to 1, a button which loads the next page will be visible.\\
 \end{document}

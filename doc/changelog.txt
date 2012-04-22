@@ -1,3 +1,16 @@
+////// Neilos 1.3 2012-04-23 //////
+-brand new server side plugin infrastructure
+-added the 'more' plugin
+-added a class config for adding additional classes to entries
+-added a click config which opens an internal link when an entry is clicked
+-added a default_extension option. Can be xml or php
+-configs of entries with the same id are now merged
+
+////// Neilos 1.2.2 2012-04-17 //////
+-added a load.php that load an alternative (very minimal ATM!) version of the site. Used with google bot.. A proper index.php is required to load the script
+-title support in config. Used for changing the page title
+-the extension if the content files is not necessary anymore. It is guessed by the core
+
 ////// Neilos 1.2.1 2012-01-03 //////
 Every div created from config has an additional container
 Animations are loaded serially. No more glitching.
