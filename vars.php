@@ -1,7 +1,7 @@
 <?php
 	$_SITENAME = 'neilos';
 	
-	$_VAR['version'] = "1.2.2";
+	$_VAR['version'] = "1.3";
 
 	$_ANALYTICS = FALSE;
 	$_ANALYTICS_ID = 'UA-29416196-1';

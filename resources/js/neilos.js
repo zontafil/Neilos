@@ -1,7 +1,7 @@
 
 var Neilos = {
 	config : {
-		version : "1.2.2",
+		version : "1.3",
 		debug : false,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
@@ -21,6 +21,7 @@ var Neilos = {
 			Neilos.tools.add_file.apply(null,$.merge([Neilos.config.config_file,Neilos.config.config_file_tag,''],next_par))
 			$('#'+Neilos.config.config_parent).css('visibility','hidden')
 			$('#'+Neilos.config.config_parent).css('height','0px')
+			return true
 		},
 		get_config : function(cfg,id,eredit){
 			//return an array af all config found. if id is set, search inside its config.
@@ -631,29 +632,36 @@ var Neilos = {
 			Neilos.config.remove_config_id(id)
 			$('#'+id+'_entry').remove()
 			if ((next!=undefined) && (next!='')) next.apply(null,params)
-		}
+		},
+		check_hash : function(){
+			//check hash in the url and open the page
+			
+			var hash = window.location.hash;
+			if ((hash=='') || (hash==undefined) || (hash=='#!')) hash=Neilos.home
+			else if (hash.substr(1,1)=='!') hash = hash.substr(2,hash.length)
+			else hash = hash.substr(1,hash.length)
+			
+			//check if there is an alias for the current hash
+			var file = ''
+			Neilos.config.get_config_obj('alias','',true).each(function(){
+				if ($(this).attr('source')==hash) file = $(this).attr('file')
+			})
+			
+			if (file!='') hash=file
+			Neilos.tools.open_link_tab(hash)
+		},
 	},
 	
 	init : function() {
                 $('body').children().remove()
                 Neilos.config.initialize(Neilos.main)
-                
             },
 	
 	main : function(){
 		//main, open #home page
-		var hash = window.location.hash;
-		if ((hash=='') || (hash==undefined)) hash=Neilos.home
-		else if (hash.substr(1,1)=='!') hash = hash.substr(2,hash.length)
-		else hash = hash.substr(1,hash.length)
-		Neilos.tools.open_link_tab(hash)
-		
+		Neilos.tools.check_hash()
 		$(window).hashchange(function(){
-			var hash = window.location.hash;
-			if ((hash=='') || (hash==undefined)) hash=Neilos.home
-			else if (hash.substr(1,1)=='!') hash = hash.substr(2,hash.length)
-			else hash = hash.substr(1,hash.length)
-			Neilos.tools.open_link_tab(hash)
+			Neilos.tools.check_hash()
 		})
 		
 	}	

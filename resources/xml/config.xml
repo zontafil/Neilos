@@ -16,5 +16,6 @@
 		<display entries="showfirst"></display>
 		<clear>false</clear>
 		<default_extension>xml</default_extension>
+		<alias source='main' file='home_more.php'></alias>
 	</config>
 </entry>
