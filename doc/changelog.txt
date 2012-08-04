@@ -1,3 +1,17 @@
+////// Neilos 1.4 2012-08-05 //////
+-New PHP Core 
+-MySQL Support
+-Rewrite of the plugin infrastructure. Now plugins are loaded with xml with <plugin> tag.
+-New Loader plugin. Server side loading of subentries is now possible
+-tags support (sql only for the moment)
+-basic admin tools (clean database, convert   files <--> database)
+
+-title config is now called pagetitle. <title> is not anymore an html content like <content>. It is a config.
+	This is means that the title is a string only and cannot contain html stuff.
+-skipcontent is now called visibility
+-bug fixing
+
+
 ////// Neilos 1.3 2012-04-23 //////
 -brand new server side plugin infrastructure
 -added the 'more' plugin

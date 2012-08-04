@@ -2,8 +2,8 @@
 <entry id="main">
 	<config option="preserve">
 		<!-- <type>notitle</type> -->
-		<skipcontent>true</skipcontent>
-		<skipsubentries>true</skipsubentries>
+		<visibility>false</visibility>
+		<skipsubentries>false</skipsubentries>
 		<css id="main_win">resources/css/main.css</css>
 		<structure_div>menu</structure_div>
 		<structure_div>main</structure_div>
@@ -12,10 +12,10 @@
 		<load_file entryid="menu">resources/xml/menu.xml</load_file>
 		<load_file entryid="footer">resources/xml/footer.xml</load_file>
 		<animation speedshow="#200" speedhide="#200" type="slide">enabled</animation>
-		<home>home_more.php</home>
+		<home>load/home</home>
 		<display entries="showfirst"></display>
 		<clear>false</clear>
 		<default_extension>xml</default_extension>
-		<alias source='main' file='home_more.php'></alias>
+		<alias source='main' file='load/home'></alias>
 	</config>
 </entry>

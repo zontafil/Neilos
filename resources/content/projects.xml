@@ -1,18 +1,36 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<entry id="projects">
-	<config>
-		<clear>true</clear>
-		<skipsubentries>false</skipsubentries>
-		<skipcontent>false</skipcontent>
-		<title>Neilos - Projects</title>
-	</config>
-	<title>
-			<span>Projects</span>
-	</title>
-	<content>
+<?xml version="1.0" encoding="iso-8859-1"?><entry id="projects"><config>
+		
+		
+		
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Projects</title>
+<pagetitle>Neilos - Projects</pagetitle>
+<visibility>true</visibility>
+<skipsubentries>false</skipsubentries>
+<clear>true</clear>
+</config><content>
 			<p>
 			<li><a target="_blank" href="https://github.com/m3l7/Neilos">Neilos</a> - A javascript Web CMS -</li>
 			</p>
 			<b>Web Design:</b><li><a target="_blank" href="http://www.altai-traduzioni.com">Altai Traduzioni</a></li>
-	</content>
-</entry>
+	</content></entry>

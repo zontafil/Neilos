@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?><entry id="neilos"><config>
+        
+        <plugin>
+            <load plugin="Loader">
+                <param name="tag">neilos</param>
+            </load>
+   			<load plugin="More">
+                <param name="entries_per_page">3</param>
+                <param name="show_more">3</param>
+            </load>
+
+        </plugin>
+    <clear>true</clear>
+</config></entry>

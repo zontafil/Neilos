@@ -7,7 +7,7 @@
 "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en-US">
 <head>
-<?php if (count($esc)>0) {$head=TRUE; include "load.php";} ?>
+<?php if (count($esc)>0) {$head=TRUE; include "fallback_load.php";} ?>
 <?php if (count($esc)<=0) echo '<meta name="fragment" content="!">'; ?>
 
 <title>m3l7 personal website</title>
@@ -40,6 +40,6 @@ if (count($esc)<=0) echo '
 
 </head>
 <body>
-<?php if (count($esc)>0) {$head=FALSE; include "load.php";} ?>
+<?php if (count($esc)>0) {$head=FALSE; include "fallback_load.php";} ?>
 </body>
 </html>

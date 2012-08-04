@@ -1,97 +1,155 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<entry id="home">
+<?xml version="1.0" encoding="iso-8859-1"?><entry id="home"><config>
 
-	<config>
-		<clear>true</clear>
-		<skipsubentries>false</skipsubentries>
-		<skipcontent>false</skipcontent>
-		<title>Neilos - Home</title>
-	</config>
 
-	<entry id="230412_neilos_13">
-		<config>
-			<author>m3l7</author>
-			<date>2012-04-23</date>
-		</config>
-		<title>
-				<span>Neilos 1.3</span>
-		</title>
-		<content> 
+<plugin>
+			<load plugin="More">
+                <param name="entries_per_page">1</param>
+                <param name="show_more">1</param>
+            </load>
+</plugin>
+
+
+
+
+
+
+
+
+
+
+<tag>test,lol</tag><pagetitle>Neilos - Home</pagetitle>
+<visibility>false</visibility>
+<skipsubentries>false</skipsubentries>
+<clear>true</clear>
+</config>
+
+
+<entry id="050812_neilos_14"><config>
+<tag>neilos</tag><title>Neilos 1.4</title>
+<author>m3l7</author>
+<date>2012-08-05</date>
+</config><content> 
+			<span> <b> Neilos 1.4</b>. Huge release with tons of new shit!
+			</span>
+			<br/>
+			Finally I've added MySQL support for content storage. There's also a new PHP core
+			which can decide to load from files or db.
+			The plugin architecture was also rewritten, so check out the manual for more infos!
+			<span>Changelog:</span>
+			<br/>
+				<li>New PHP Core</li>
+				<li>MySQL Support</li>
+				<li>Rewrite of the plugin infrastructure. Now plugins are loaded with xml with the tag 'plugin'.</li>
+				<li>New Loader plugin. Server side loading of subentries is now possible</li>
+				<li>tags support (sql only for the moment)</li>
+				<li>basic admin tools (clean database, convert  files &lt;--&gt; sql</li>
+		</content></entry>
+
+
+
+<entry id="230412_neilos_13"><config>
+<tag>neilos</tag><title>Neilos 1.3</title>
+<author>m3l7</author>
+<date>2012-04-23</date>
+</config><content> 
 			<span> <b> Neilos 1.3</b>. New major release with plugins support!
 			</span>
-			<br />
+			<br/>
 			<span>Changelog:</span>
-			<br />
+			<br/>
 				<li>brand new server side plugin infrastructure</li>
-				<li>added the &#39;more&#39; plugin</li>
+				<li>added the 'more' plugin</li>
 				<li>added a class config for adding additional classes to entries</li>
 				<li>added a click config which opens an internal link when an entry is clicked</li>
 				<li>added a default_extension option. Can be xml or php</li>
 				<li>configs of entries with the same id are now merged</li>
-		</content> 
-	</entry>
+		</content></entry><entry id="170412_neilos_122"><config>
+			
+			
+			
+		
 
-	<entry id="170412_neilos_122">
-		<config>
-			<author>m3l7</author>
-			<date>2012-04-17</date>
-		</config>
-		<title>
-				<span>Neilos 1.2.2</span>
-		</title>
-		<content> 
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Neilos 1.2.2</title>
+<author>m3l7</author>
+<date>2012-04-17</date>
+</config><content> 
 			<span> <b> Neilos 1.2.2</b>. Main feature is google crawler support
 			</span>
-			<br />
+			<br/>
 			<span>Changelog:</span>
-			<br />
+			<br/>
 				<li>add a load.php that load an alternative (very minimal ATM!) version of the site. Used with google bot.. A proper index.php is required to load the script</li>
 				<li>title support</li>
 				<li>extension of the url of the pages is not necessary anymore (i.e. .xml and .php)</li>
-			<br />
-			</content> 
-	</entry>
+			<br/>
+			</content></entry><entry id="030112_neilos_121"><config>
+			
+			
+			
+		
 
 
-	<entry id="030112_neilos_121">
-		<config>
-			<author>m3l7</author>
-			<date>2012-01-03</date>
-		</config>
-		<title>
-				<span>Neilos 1.2.1</span>
-		</title>
-		<content> 
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Neilos 1.2.1</title>
+<author>m3l7</author>
+<date>2012-01-03</date>
+</config><content> 
 			<span> <b> Neilos 1.2.1</b>. Bug fixing release. I have changed the project name to Neilos, since
 			it was already used by other software.
 			</span>
-			<br />
+			<br/>
 			<span>Changelog:</span>
-			<br />
+			<br/>
 				<li>Every div created from config has an additional container</li>
 				<li>Animations are loaded serially. No more glitching.</li>
-				<li>It is now possible to specify animation speed in ms using speed=&#34;#1000&#34;</li>
+				<li>It is now possible to specify animation speed in ms using speed="#1000"</li>
 				<li>hide and show animations settings can be set individually</li>
 				<li>Title of entries can be ignored using notitle in config</li>
 				<li>Documentation updated</li>
-			<br />
-			</content> 
-	</entry>
+			<br/>
+			</content></entry><entry id="291211_zcms_12"><config>
+			
+			
+			
+		
 
-	<entry id="291211_zcms_12">
-		<config>
-			<author>m3l7</author>
-			<date>2011-12-29</date>
-		</config>
-		<title>
-				<span>Zcms 1.2</span>
-		</title>
-		<content> 
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Zcms 1.2</title>
+<author>m3l7</author>
+<date>2011-12-29</date>
+</config><content> 
 			<span> <b> Zcms 1.2 is out</b>! This is the hardest release I've done so far.. most of the code
 			was rewritten.</span>
-			<br />
+			<br/>
 			<span>Changelog:</span>
-			<br />
+			<br/>
 				<li>added a very basic documentation updated to Zcms 1.1.2, so it's quite useless ATM ^_^</li>
 				<li>there is no more distinction between posts and comments, they're all entries</li>
 				<li>added support for loading subentries and entry's content only when the they are shown</li>
@@ -99,145 +157,193 @@
 				<li>Now entries behaviour can be set. Available modes are: show everything, hide everything, and show only the first entry</li>
 				<li>the homepage is not hardcoded anymore. It can be set in the config</li>
 				<li>minor changes</li>
-			<br />
+			<br/>
 			<b>KNOWN ISSUE:</b> Using slide animation will probanly produce glitching, use fade instead 
-			<br />
-			I've opened a github repo for the project. You can find it <a target="_blank" href="https://github.com/m3l7/Zcms">here</a>.<br />
+			<br/>
+			I've opened a github repo for the project. You can find it <a target="_blank" href="https://github.com/m3l7/Zcms">here</a>.<br/>
 			I will change the project name (zcms is the name of at least 2 other CMSs :| )
-			<br />
+			<br/>
 			BRB.
-			</content> 
-	</entry>
-	
-	<entry id="291111_zcms_112">
-		<config>
-			<author>m3l7</author>
-			<date>2011-11-29</date>
-		</config>
-		<title>
-				<span>Zcms 1.1.2</span>
-		</title>
-		<content> 
+			</content></entry><entry id="291111_zcms_112"><config>
+			
+			
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Zcms 1.1.2</title>
+<author>m3l7</author>
+<date>2011-11-29</date>
+</config><content> 
 			<span> <b> Zcms 1.1.2 </b>! Another minor release</span>
-			<br />
+			<br/>
 			<span>Changelog:</span>
-			<br />
+			<br/>
 				<li>deprecation of old functions: xml2string</li>
 				<li>add support for loading php or html files.</li>
 				<li>&lt;load_xml&gt; and add_xml() have been renamed to &lt;load_file&gt; and add_file()</li>
 				<li>the title element has been renamed to 'title' for a php incompatibility</li>	
-			<br />
+			<br/>
 			Next version will have a better article/comment approach, using more server side functionalities.
-			<br />
+			<br/>
 			<b>KNOWN ISSUE:</b> comments in the non-first articles are not shown...
-			</content> 
-	</entry>
-
-	<entry id="8911_zcms_111" date="2011-09-08" author="m3l7">
-		<config>
-			<author>m3l7</author>
-			<date>2011-09-08</date>
+			</content></entry><entry id="8911_zcms_111"><config>
+			
+			
 			<load_file mode="LoadWhenShown" entryid="comments_8911_zcms_111">resources/comments/8911_zcms_111.xml</load_file>
-		</config>
-		<title>
-				<span>Zcms 1.1.1</span>
-		</title>
-		<content> 
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Zcms 1.1.1</title>
+<author>m3l7</author>
+<date>2011-09-08</date>
+</config><content> 
 			<span> <b> Zcms 1.1.1 </b>! Bug fixing only release...</span>
-			<br />
+			<br/>
 			<span>Changelog:</span>
-			<br />
-				<li>comments are hidden correctly when the parent&#39;s post is hidden</li>
+			<br/>
+				<li>comments are hidden correctly when the parent's post is hidden</li>
 				<li>all comments are loaded correctly now</li>	
-			<br />
+			<br/>
 			<span>I want to release one or two versions of zcms before adding some server-side love... </span>
 			<span>Some routines are becoming slow, I need to polish the code, add some little features (collapse/expand
 				all comments), and think about the best post/comment approach..</span>
-			<br />
+			<br/>
 			<span>Stay tuned.</span>
-		</content>
-	</entry>
-		<entry id="7911_zcms_11" date="2011-09-07" author="m3l7">
-		<config>
-			<author>m3l7</author>
-			<date>2011-09-07</date>
-		</config>
-		<title>
-				<span>Zcms 1.1</span>
-		</title>
-		<content> 
+		</content></entry><entry id="7911_zcms_11"><config>
+			
+			
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Zcms 1.1</title>
+<author>m3l7</author>
+<date>2011-09-07</date>
+</config><content> 
 			<span>Phew! Just released <b>Zcms 1.1!</b>. Finally I've added comments support. There are many bugs and limitations.. you are warned</span>
-			<br />
+			<br/>
 			<span>Changelog:</span>
-			<br />
+			<br/>
 				<li>added analize_config_post() for analize config after adding the content</li>
 				<li>added support for aligning elements horizontally (useful with fixed positioned elements)</li>
 				<li>initial support for comments</li>
-			<br />
+			<br/>
 			<span>Known issues: </span>
-			<br />
+			<br/>
 			<li>comments are not correctly hidden</li>
 			<li>comments are read-only for now (server implementation of zcms is still non-existent)</li>
-			<li>I don&#39;t know if comment&#39;s protocol should be rewrited, deleted or kept as it is now... 
+			<li>I don't know if comment's protocol should be rewrited, deleted or kept as it is now... 
 			 using only posts, which can eventually be replies of other posts, seems a better and simpler idea</li>
 			 <li>comments' animation doesn't work</li>
 			 <li>comments are not loaded correctly when 2 or more entries are shown (ajax overlapping)</li>
-		</content>
-	</entry>
-	
-	<entry id="6911_zcms_103" date="2011-09-06" author="m3l7">
-		<config>
-			<author>m3l7</author>
-			<date>2011-09-06</date>
-		</config>
-		<title>
-				<span>Zcms 1.0.3</span>
-		</title>
-		<content> 
+		</content></entry><entry id="6911_zcms_103"><config>
+			
+			
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Zcms 1.0.3</title>
+<author>m3l7</author>
+<date>2011-09-06</date>
+</config><content> 
 			<span>new shit online! <b>Zcms 1.0.3!</b>. Added a couple of nice features I'm sure you'll love</span>
-			<br />
+			<br/>
 				<li>fixed animation (added an additional subdiv to every structure divs)</li>
 				<li>added more animations. Now you can choose between fade,slide and hide(default)</li>
-				<li>added subdiv &#39;text_right&#39;</li>
-				<li>support for date and author (tag &#39;author&#39; and &#39;date&#39; for css styling)</li>
+				<li>added subdiv 'text_right'</li>
+				<li>support for date and author (tag 'author' and 'date' for css styling)</li>
 				<li>support for showing/hiding entries. By default, first entry is shown, others are hidden</li>
-			<br />
+			<br/>
 			<span>Spread the love &lt;333 </span>
-			<br />
+			<br/>
 			<span>lord_of_chaos=odites</span>
-		</content>
-	</entry>
-	<entry id="5911zcms102" date="2011-09-05" author="m3l7">
-		<config>
-			<author>m3l7</author>
-			<date>2011-09-05</date>
-		</config>
-		<title>
-				<span>Zcms 1.0.2</span>
-		</title>
-		<content> 
+		</content></entry><entry id="5911zcms102"><config>
+			
+			
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Zcms 1.0.2</title>
+<author>m3l7</author>
+<date>2011-09-05</date>
+</config><content> 
 			<span><b>Zcms 1.0.2</b> up and running. This is (another) minor release including, among bug fixes:</span>
-			<br />
+			<br/>
 			<li>animations are loaded serially (better stability)</li>
 			<li>class names clean up (no more tons of useless classes inside the same div)</li>
 			<li>the first entry now has an additional 'firstentry' class for more css fun</li>
-			<li>xml tags has better names now (tab --> title, container --> entry)</li>
+			<li>xml tags has better names now (tab --&gt; title, container --&gt; entry)</li>
 			<li>added a little parser that substitutes variables in the text entries</li>
-			<br />
+			<br/>
 			
-		</content>
-		</entry>
-		<entry id="2911first" date="2011-09-02" author="m3l7">
-		<config>
-			<author>m3l7</author>
-			<date>2011-09-02</date>
-		</config>
-			<title>
-				<span>Hello World (:</span>
-			</title>
-			<content>
-				<span>Plaoo@all</span>
-			</content>
-	</entry>
+		</content></entry><entry id="2911first"><config>
+			
+			
+			
+		
 
-</entry>
+
+
+
+
+
+
+
+
+
+
+<tag>neilos</tag><title>Hello World (:</title>
+<author>m3l7</author>
+<date>2011-09-02</date>
+</config><content>
+				<span>Plaoo@all</span>
+			</content></entry></entry>
