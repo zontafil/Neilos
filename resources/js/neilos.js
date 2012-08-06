@@ -2,7 +2,7 @@
 var Neilos = {
 	config : {
 		version : "1.4",
-		debug : false,
+		debug : true,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
 		config_parent : 'config',
@@ -195,8 +195,27 @@ var Neilos = {
 				
 				$('#'+Neilos.config.config_parent+' #'+id+'_config').remove()
 			}
+		},
+		get_parent_before_target : function(parent,trg){
+			//go up the tree of configs and get the closer parent outside trg
+			//useful when deleting configs and we need to link the eisting configs
+			if ((parent=='') || (parent==undefined) || (trg=='') || (trg==undefined)) return ''
+			var p = parent
+			var res = ''
+			var add = false
+			while (true){
+				if (!$('config#'+p+'_config').length) return false
+				
+				if ((add==true) && (($('config#'+p+'_config').attr('target')!=trg) || $('config#'+p+'_config').attr('option')=='preserve')) res = p
+				
+				if ($('config#'+p+'_config').attr('target')==trg) add=true
+				else add = false
+				
+				p = $('config#'+p+'_config').attr('parent')
+				if ((p==undefined) || (p=='')) break
+			}
+			return res
 		}
-		
 	},
 		
 	structure : {
@@ -390,7 +409,8 @@ var Neilos = {
 					//we have to clear the target's configs
 					var trg = $(xml).find('*').andSelf().filter('entry#'+id+' > config > target').text()
 					if ((trg==undefined) || (trg=='')) trg = Neilos.config.get_config('target',parent,true)[0]
-					prnt = Neilos.config.remove_config_from_trg(trg)
+					prnt = Neilos.config.get_parent_before_target(parent,trg)
+					Neilos.config.remove_config_from_trg(trg)
 					same_config.length=0
 				}
 				
@@ -400,7 +420,8 @@ var Neilos = {
 					var obj2 = $(xml).find('*').andSelf().filter('entry#'+id+' > config').attr('id',id+'_config').clone()
 					var $div2 = $("<div/>").append(obj2);	
 					$('#'+Neilos.config.config_parent).append($div2.html());
-					if (prnt != '') $('config#'+id+'_config').attr('parent',prnt)
+					if ((parent!='') && ($('config#'+parent+'_config').length)) $('config#'+id+'_config').attr('parent',parent)
+					else if ((prnt != '') && (prnt!=false)) $('config#'+id+'_config').attr('parent',prnt)
 				}
 				else{
 					var obj2 = $(xml).find('*').andSelf().filter('entry#'+id+' > config').attr('id',id+'_config').children().clone()
@@ -636,7 +657,7 @@ var Neilos = {
 		load_entries : function(tag,index,next){
 			//load_entries: load all entries in tag
 			//entries are loaded serially through ajax
-
+			//debugger
 			params = Array.prototype.slice.call(arguments,3)
 			
 			if ((index=='') || (index==undefined)) index=0
