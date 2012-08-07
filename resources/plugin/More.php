@@ -44,12 +44,17 @@ Class More{
 					}
 				}
 				$out = '';
+				$theresmore = false;
 				foreach ($xml->xpath("entry") as $i=>$cont){
 					#check if we are in the correct page
-					if (($i<($page-1)*$num_per_page) || ($i>($page)*$num_per_page-1)) continue;
+					if ($i<($page-1)*$num_per_page) continue;
+					else if ($i>($page)*$num_per_page-1) {
+						$theresmore = true;
+						continue;
+					}
 					$out .= $cont->asXML();
 				}
-				if (($out!='') && ($show_more)){
+				if (($out!='') && ($show_more) && ($theresmore)){
 					//evaluate the new GET string
 					$get = $_GET;
 					$get['page']= $page + 1;
