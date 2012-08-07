@@ -9,7 +9,7 @@
 	$_STATCOUNTER_PROJ = '7692990';
 	$_STATCOUNTER_SEC = 'a9de00c5';
 	
-	$_DEFAULT_STORAGE = 'file';
+	$_DEFAULT_STORAGE = 'sql';
 	
 	$_SQL_HOST = "localhost";
 	$_SQL_USER = "root";

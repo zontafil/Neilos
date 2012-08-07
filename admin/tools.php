@@ -36,7 +36,19 @@
         </ul>
         <hr/>
     </form>
-    <form name="emptyDB" action="empty_sql.php" method="get">
+    <form name="createDB" action="create_sql.php" method="get">
+        <span class="tool_title">Install the DB</span>
+        <hr/>
+        <input class="action" type="submit" value="Go!">
+        <ul class="options">
+          <li>
+               <div class="options_input">
+               </div>
+          </li>
+        </ul>
+        <hr/>
+    </form>
+        <form name="emptyDB" action="empty_sql.php" method="get">
         <span class="tool_title">Delete all DB Data! (WARNING)</span>
         <hr/>
         <input class="action" type="submit" value="Go!">
@@ -48,7 +60,7 @@
         </ul>
         <hr/>
     </form>
-    
+
 </body>
 
 
