@@ -50,7 +50,7 @@ if ($handle = opendir($main_path)) {
 			$xml = simplexml_load_file($main_path.$file);
 			if ($xml) {
 				foreach ($xml->xpath('//entry') as $i=>$cont){
-					convert_entry_sql($xml,$cont->attributes()['id'],$file);
+					convert_entry_sql($xml,$cont->attributes()['id'],$file,$overwrite);
 				}
 				foreach ($xml->xpath('//entry') as $i=>$cont){
 					link_subentry($xml,$cont->attributes()['id'],$file);
@@ -78,7 +78,7 @@ function link_subentry($xml,$id,$tags){
 
 }
 
-function convert_entry_sql($xml,$id,$file){
+function convert_entry_sql($xml,$id,$file,$overwrite){
 	//convert entry to sql, and check for additional tags
 	
 	if ($id=='') return false;
@@ -163,8 +163,18 @@ function convert_entry_sql($xml,$id,$file){
 	//
 	//MAIN ENTRY SQL QUERY
 	//
-	$query = "INSERT INTO entries VALUES ('','$id','$title','$date','$author','$file','','$config','$content','$pagetitle','$visibility','$target','$ss','$clear','$type')";
-    mysql_query($query);
+	$query = "select id_name from entries where id_name = '$id'";
+	$res = mysql_query($query);
+	$write = true;
+	if (mysql_numrows($res)>0){
+		//check if we have to overwrite
+		if ($overwrite=='yes') mysql_query("delete from entries where id_name='$id'");
+		else $write=false;
+	}
+	if ($write){
+		$query = "INSERT INTO entries VALUES ('','$id','$title','$date','$author','$file','','$config','$content','$pagetitle','$visibility','$target','$ss','$clear','$type')";
+		mysql_query($query);
+	}
 	//	
 	//	
 	
