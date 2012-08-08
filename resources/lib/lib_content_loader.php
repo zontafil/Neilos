@@ -145,12 +145,16 @@ function load_entry_convert($xml,$id,$id_out){
 function load_block($xml,$id,$block){
 	
 	$_input_string = '';
+	
+	//take only the last occurrence of block. Apply plugins to all occurences instead?
 	foreach ($xml->xpath('//entry[@id="'.$id.'"]/'.$block) as $cont){
-		$_input_string .= $cont->asXML();
+		$_input_string = $cont->asXML();
+		$_input_string = str_replace("<$block>",'',$_input_string);
+		$_input_string = str_replace("</$block>",'',$_input_string);
 	}
-	
-	return apply_plugins($xml,$id,$_input_string,$block);
-	
+	$pl = apply_plugins($xml,$id,$_input_string,$block);
+	if ($pl!='') return "<$block>".$pl."</$block>";
+	else return '';
 }
 
 function apply_plugins($xml,$id,$in_str,$context){
