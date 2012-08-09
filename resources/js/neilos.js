@@ -534,7 +534,7 @@ var Neilos = {
 					
 					if (!$(trg).find('#'+id+'_entry').length) var hide = 1
 					
-					if (type!='notab')
+					if (type!='notitle')
 					if ((tl.length!=0) || (aut.length!=0) || (dat.length!=0)){
 						//add title
 						Neilos.structure.new_tab(id,trg,type,'index'+e_index)
