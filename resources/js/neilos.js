@@ -56,7 +56,26 @@ var Neilos = {
 					if ((obj==undefined) || (obj=='')) break
 				}
 			return list
-		},		
+		},
+		analize_config_mid : function(id){
+			if (Neilos.config.debug) console.log('analize_config_mid '+id)
+			//no support for next callback function... problem??
+			//add it if you need threading shits inside this function
+			
+			var cfg = $('#'+Neilos.config.config_parent).find('#'+id+'_config')
+			
+			cfg.find('structure_tab, structure_div').each(function(){
+				var parent = $(this).attr('parent')
+				if ((parent=='') || (parent==undefined)) parent='#'+Neilos.config.container_div
+				if ($(this).is('structure_tab')) Neilos.structure.new_tab($(this).text(),'',parent)
+				else {
+					Neilos.structure.new_div($(this).text()+'_container','',parent)
+					Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container')
+				}
+			})
+
+			
+		},
 		analize_config_post : function(id,next){
 			if (Neilos.config.debug) console.log('analize_config_post '+id)
 			
@@ -132,16 +151,6 @@ var Neilos = {
 			if (!cfg.length) return false
 			cfg.find('css').each(function(){
 				Neilos.tools.load_css_config($(this).text(),$(this).attr('id'),id,false)
-			})
-
-			cfg.find('structure_tab, structure_div').each(function(){
-				var parent = $(this).attr('parent')
-				if ((parent=='') || (parent==undefined)) parent='#'+Neilos.config.container_div
-				if ($(this).is('structure_tab')) Neilos.structure.new_tab($(this).text(),'',parent)
-				else {
-					Neilos.structure.new_div($(this).text()+'_container','',parent)
-					Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container')
-				}
 			})
 
 			$('config#'+id+'_config').attr('target',Neilos.config.get_config('target',id,true)[0])
@@ -392,7 +401,6 @@ var Neilos = {
 			})
 		},
 		add_entry: function (xml,id,parent,next){
-			//debugger
 			//add_entry: Load an entry.. --> loads config and content
 			
 			//WARNING: if a previous config is found, it is not overwritten (the new config is merged)
@@ -483,6 +491,7 @@ var Neilos = {
 							$(trg)[animfunc[0]](speedhide,function(){
 								$(trg).children().remove()
 								$(trg).attr('style','display: block;')
+								Neilos.config.analize_config_mid(id)
 								if (Neilos.config.get_config('visibility',id)[0]!='false')
 									Neilos.tools.add_content(xml,id,trg,type)
 								if (Neilos.config.get_config('skipsubentries',id,true)!='true')
@@ -494,6 +503,7 @@ var Neilos = {
 						}
 						else {
 								$(trg).children().remove()
+								Neilos.config.analize_config_mid(id)
 								if (Neilos.config.get_config('visibility',id)[0]!='false')
 									Neilos.tools.add_content(xml,id,trg,type)
 								if (Neilos.config.get_config('skipsubentries',id,true)!='true')
@@ -503,6 +513,7 @@ var Neilos = {
 						}
 					}
 				else {
+					Neilos.config.analize_config_mid(id)
 					if (Neilos.config.get_config('visibility',id)[0]!='false')
 						Neilos.tools.add_content(xml,id,trg,type)
 					if (Neilos.config.get_config('skipsubentries',id,true)!='true')
@@ -515,7 +526,6 @@ var Neilos = {
 				
 		},
 		add_content : function(xml,id,trg,type){
-			debugger
 				//add_content.. Add <title> and <content> from an entry to the DOM
 				//check if content should be added or not
 				if (Neilos.config.debug) console.log('add_content '+id+' '+trg+' '+type)
