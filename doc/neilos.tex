@@ -85,7 +85,7 @@ Load an external css file. The id is used to identify the css in order to remove
       \end{minted}
 Specify the date and author of the entry. They will be added to the DOM in the .title before everything else.
 \item \begin{minted}{xml}
-<structure_div>div_name</structure_div>       
+<structure_div parent="#parent">div_name</structure_div>       
       \end{minted}
 Add a div to the DOM. (See Structure section)
 \item \begin{minted}{xml}
@@ -246,9 +246,13 @@ Structure objects can be created using the following methods:
 \subsection{xml methods}
 \begin{list}{-}{}
   \item \begin{minted}{xml}
-<structure_div>         
+<structure_div parent="#parent">         
         \end{minted}
-create a div and a subdiv \_content. It is created at the end of the current DOM, so it should be used only in the main config. It must be placed inside $<$config$>$ tag.
+create a div and a subdiv \_content. It is created at the end of the current DOM (or inside parent, if specified), so it should be used only in the main config. It must be placed inside $<$config$>$ tag.
+  \item \begin{minted}{xml}
+<structure_tab parent="#parent">         
+        \end{minted}
+create a standard container for an entry
 \end{list}
 
 \section{SEO}

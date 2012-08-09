@@ -136,7 +136,7 @@ var Neilos = {
 
 			cfg.find('structure_tab, structure_div').each(function(){
 				var parent = $(this).attr('parent')
-				if ((parent!='') || (parent==undefined)) parent='#'+Neilos.config.container_div
+				if ((parent=='') || (parent==undefined)) parent='#'+Neilos.config.container_div
 				if ($(this).is('structure_tab')) Neilos.structure.new_tab($(this).text(),'',parent)
 				else {
 					Neilos.structure.new_div($(this).text()+'_container','',parent)
@@ -515,6 +515,7 @@ var Neilos = {
 				
 		},
 		add_content : function(xml,id,trg,type){
+			debugger
 				//add_content.. Add <title> and <content> from an entry to the DOM
 				//check if content should be added or not
 				if (Neilos.config.debug) console.log('add_content '+id+' '+trg+' '+type)
@@ -522,9 +523,9 @@ var Neilos = {
 				if (trg!=undefined){
 					
 					//compute the index of the entry
-					if ($(trg).children().length==0) e_index = 1
+					if ($(trg).children().filter('[class]').length==0) e_index = 1
 					else{
-						l = $(trg).children().last().attr('class')
+						l = $(trg).children().filter('[class]').last().attr('class')
 						l = l.substring(l.indexOf('index')+5)
 						e_index = parseInt(l)+1
 					}
