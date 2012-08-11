@@ -42,6 +42,8 @@ var Neilos = {
 			return list
 		},
 		get_config_obj : function(cfg,id,eredit){
+			//TODO: Unificate the 3 functions... use an argument to pass before, mid, after
+			//analize config after target clearing and before content loading
 			//return an array af all config found. if id is set, search inside its config. If eredit is true, search for
 			//parents config.
 			if (!Neilos.config.initialized) return ""
@@ -114,7 +116,10 @@ var Neilos = {
 				$('#'+id+'_entry').off('click')
 				$('#'+id+'_entry').click(function(event){
 					  if (remove=='true') Neilos.tools.remove_entry(id)
-					  if ((href!='') && (href!=undefined)) Neilos.tools.open_link_tab(href)
+					  if ((href!='') && (href!=undefined)) {
+						Neilos.tools.pushUrl('#!'+href)
+						Neilos.tools.open_link_tab(href)
+					  }
 				})
 			})
 
@@ -710,6 +715,13 @@ var Neilos = {
 			if (file!='') hash=file
 			Neilos.tools.open_link_tab(hash)
 		},
+		pushUrl : function(link){
+			console.log(link)
+			//write link to the URL bar
+			var stateObj = { foo: link };
+			history.pushState(stateObj, "", link);
+		}
+
 	},
 	
 	init : function() {
