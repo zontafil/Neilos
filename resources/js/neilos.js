@@ -2,7 +2,7 @@
 var Neilos = {
 	config : {
 		version : "1.4",
-		debug : true,
+		debug : 0,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
 		config_parent : 'config',
@@ -583,7 +583,6 @@ var Neilos = {
 				//toggle_entry_int: hide or show an entry (tab or div) created with new_tab
 				//action(optional) = show/hide
 				if (Neilos.config.debug) console.log('toggle_entry '+id+' '+action+' '+disable_animation)
-				
 				next_par = Array.prototype.slice.call(arguments,4)
 				
 				//check if entry exists
@@ -645,7 +644,7 @@ var Neilos = {
 					}
 				}
 				else{
-					$('#'+id+'_entry > #'+id+'_title')[animfunction[1]](speedshow,function(){
+					$('#'+id+'_entry > #'+id+'_title')[animfunction[1]](speed,function(){
 						$('#'+id+'_entry > #'+id+'_content')[animfunction[i]](speed,function(){
 							if ($('#'+id+'_entry > #'+id+'_comments').length){
 								$('#'+id+'_entry > #'+id+'_comments')[animfunction[i]](speed,function(){
