@@ -584,7 +584,6 @@ var Neilos = {
 				//action(optional) = show/hide
 				if (Neilos.config.debug) console.log('toggle_entry '+id+' '+action+' '+disable_animation)
 				next_par = Array.prototype.slice.call(arguments,4)
-				
 				//check if entry exists
 				if ($('#'+id+'_entry').length==0){
 					if ((next!='') && (next!=undefined)) next.apply(null,next_par)
@@ -607,9 +606,8 @@ var Neilos = {
 				if (speedhide==undefined) speedhide=speed
 				if (i==1) speed=speedshow
 				if (i==2) speed=speedhide
-				if ((speed!=undefined) && (speed.indexOf('#')>=0)) speed = parseInt(speed.split('#')[1])
-				if ((speedshow!=undefined) && (speedshow.indexOf('#')>=0)) speedshow = parseInt(speedshow.split('#')[1])
-				
+				if (speed==undefined) speed = 0
+				if (((typeof speed)=="string") && (speed.indexOf('#')>=0)) speed = parseInt(speed.split('#')[1])
 	
 				var animfunction=['toggle','show','hide']
 				if ((anim_on!='enabled') || (disable_animation=="true") || disable_animation==true) {
