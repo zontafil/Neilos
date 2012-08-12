@@ -111,13 +111,14 @@ var Neilos = {
 			//add additional onclick events
 			cfg.find('click').each(function(){
 				var href = $(this).attr('href')
+				var upd = $(this).attr('updateurl')
 				var remove = $(this).attr('remove')
 				if ($(this).attr('prevent_default')=='true') $('#'+id+'_entry > #'+id+'_title').off('click')
 				$('#'+id+'_entry').off('click')
 				$('#'+id+'_entry').click(function(event){
 					  if (remove=='true') Neilos.tools.remove_entry(id)
 					  if ((href!='') && (href!=undefined)) {
-						Neilos.tools.pushUrl('#!'+href)
+						if (upd=='true') Neilos.tools.pushUrl('#!'+href)
 						Neilos.tools.open_link_tab(href)
 					  }
 				})

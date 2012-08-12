@@ -139,9 +139,9 @@ Neilos will cycle throigh the other extensions automatically if the file is not 
 \end{minted}
 Add an additional class to the entry.
 \item \begin{minted}{xml}
-<click prevent_default='true' href='filename' remove='true'></click>
+<click prevent_default='true' updateurl='true' href='filename' remove='true'></click>
 \end{minted}
-Open an internal link (specified by href) when the entry is clicked. If prevent\_default is set, the normal toggle behaviour is avoided.\\
+Open an internal link (specified by href) when the entry is clicked. If prevent\_default is set, the normal toggle behaviour is avoided.If updateurl is set true, the url bar will be updated to the href link.\\
 If remove is set, the entry is removed after being clicked.
 \item \begin{minted}{xml}
 <alias source='page' file='filename.php'></alias>

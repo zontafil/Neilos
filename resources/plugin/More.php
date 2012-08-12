@@ -28,7 +28,7 @@ Class More{
 				if ($page>1){
 					$_input_string = preg_replace('/<clear>[a-zA-Z]*<\/clear>/', '', $_input_string);
 					$_input_string = preg_replace('/<\/config>/', '', $_input_string);
-					$_input_string = $_input_string."<clear>false</clear></config>";
+					$_input_string = $_input_string."<clear>false</clear>";
 				}
 				return $_input_string;
 				
