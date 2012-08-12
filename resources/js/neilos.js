@@ -2,7 +2,7 @@
 var Neilos = {
 	config : {
 		version : "1.4",
-		debug : 0,
+		debug : 1,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
 		config_parent : 'config',
@@ -122,7 +122,11 @@ var Neilos = {
 					  }
 				})
 			})
-
+			
+			//update the url bar if necessary
+			cfg.find('updateurl').each(function(){
+				if ($(this).text()!='') Neilos.tools.pushUrl($(this).text())
+			})
 
 			//decide if the entry should be visible or not
 			var skip = Neilos.config.get_config('skipcontent',id) 
