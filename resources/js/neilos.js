@@ -68,11 +68,12 @@ var Neilos = {
 			
 			cfg.find('structure_tab, structure_div').each(function(){
 				var parent = $(this).attr('parent')
+				var overwrite = $(this).attr('overwrite')
 				if ((parent=='') || (parent==undefined)) parent='#'+Neilos.config.container_div
 				if ($(this).is('structure_tab')) Neilos.structure.new_tab($(this).text(),'',parent)
 				else {
-					Neilos.structure.new_div($(this).text()+'_container','',parent)
-					Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container')
+					Neilos.structure.new_div($(this).text()+'_container','',parent,overwrite)
+					Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container',overwrite)
 				}
 			})
 
@@ -274,14 +275,16 @@ var Neilos = {
 			return true
 		},
 		
-		new_div : function(div_name,cls,parent){
+		new_div : function(div_name,cls,parent,overwrite){
 			//add new div
 			if ((cls!=undefined) && (cls!='')) cls = ' class="'+cls+'"'
 			else cls=''
-						
-			$(parent).find('#'+div_name).remove()
-			if ((div_name==undefined) || (div_name=='')) $(parent).append('<div '+cls+anm+'></div>')
-			$(parent).append('<div id="'+div_name+'"'+cls+'></div>')
+			
+			if (($(parent).find('#'+div_name).length==0) || (overwrite!='false')){			
+				$(parent).find('#'+div_name).remove()
+				if ((div_name==undefined) || (div_name=='')) $(parent).append('<div '+cls+anm+'></div>')
+				$(parent).append('<div id="'+div_name+'"'+cls+'></div>')
+			}
 		}
 	},
 	
