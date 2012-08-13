@@ -116,7 +116,7 @@ If mode='loadwhenshown' is set, the file is loaded only when the entry is toggle
 \item \begin{minted}{xml}
 <clear>false</clear>
 \end{minted}
-If true, the target will be cleared before adding the entry. Not inheritable.
+If true, the target will be cleared before adding the entry.
 \item \begin{minted}{xml}
 <visibiity>true</visibility>
 \end{minted}
@@ -159,6 +159,10 @@ Add a plugin to the entry. See the proper section.
 <updateurl>#!url</updateurl>
 \end{minted}
 Update the url bar to the specified url.
+\item \begin{minted}{xml}
+<delete id='id'></delete>
+\end{minted}
+Delete the specified entry
 \end{list}
 \normalsize
 \subsection{Link to entries}

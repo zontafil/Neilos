@@ -129,7 +129,16 @@ var Neilos = {
 			cfg.find('updateurl').each(function(){
 				if ($(this).text()!='') Neilos.tools.pushUrl($(this).text())
 			})
-
+			
+			
+			//delete needed entries
+			cfg.find('delete').each(function(){
+				var deleteid = $(this).attr('id')
+				Neilos.config.remove_config_id(deleteid)
+				$('#'+deleteid+'_entry').remove()
+			})
+			
+			
 			//decide if the entry should be visible or not
 			var skip = Neilos.config.get_config('skipcontent',id) 
 			var tagl = cfg.find('load_file[mode!="LoadWhenShown"]')
