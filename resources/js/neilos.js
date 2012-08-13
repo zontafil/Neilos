@@ -566,6 +566,7 @@ var Neilos = {
 					var dat = $(xml).find('*').andSelf().filter('entry#'+id+' > config > date')
 					
 					if (!$(trg).find('#'+id+'_entry').length) var hide = 1
+					else return false
 					
 					if (type!='notitle')
 					if ((tl.length!=0) || (aut.length!=0) || (dat.length!=0)){
@@ -601,6 +602,7 @@ var Neilos = {
 				//action(optional) = show/hide
 				if (Neilos.config.debug) console.log('toggle_entry '+id+' '+action+' '+disable_animation)
 				next_par = Array.prototype.slice.call(arguments,4)
+				debugger
 				//check if entry exists
 				if ($('#'+id+'_entry').length==0){
 					if ((next!='') && (next!=undefined)) next.apply(null,next_par)
@@ -612,7 +614,7 @@ var Neilos = {
 				else if ((action!='hide') && (!$('#'+id+'_entry > #'+id+'_content').is(':visible'))) i=1
 				else i=2
 				
-				var anim_on = Neilos.config.get_config('animation',id,true)
+				var anim_on = Neilos.config.get_config('animation',id,true)[0]
 				var anim_type = Neilos.config.get_config_obj("animation",id,true).last().attr('type')
 				
 				//determine animation speed
