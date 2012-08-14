@@ -2,7 +2,7 @@
 var Neilos = {
 	config : {
 		version : "1.4",
-		debug : 1,
+		debug : 0,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
 		config_parent : 'config',
@@ -136,6 +136,22 @@ var Neilos = {
 				var deleteid = $(this).attr('id')
 				Neilos.config.remove_config_id(deleteid)
 				$('#'+deleteid+'_entry').remove()
+			})
+			
+			//check forms
+			cfg.find('checkform').each(function(){
+				//TODO: THIS IS ONLY A PROOF OF CONCEPT!
+				var formid = $(this).attr('selector')
+				var href = $(this).attr('href')
+				$(formid).submit(function(){
+					var param = ''
+					$(this).find('input').each(function(){
+						param = $(this).val()
+					})
+					href = href.split('#!')[href.split('#!').length-1] + '&param='+param
+					Neilos.tools.open_link_tab(href)
+				})
+				
 			})
 			
 			
