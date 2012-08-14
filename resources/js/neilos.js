@@ -2,7 +2,7 @@
 var Neilos = {
 	config : {
 		version : "1.4",
-		debug : 0,
+		debug : 1,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
 		config_parent : 'config',
@@ -150,6 +150,7 @@ var Neilos = {
 					})
 					href = href.split('#!')[href.split('#!').length-1] + '&param='+param
 					Neilos.tools.open_link_tab(href)
+					return false
 				})
 				
 			})
@@ -353,7 +354,6 @@ var Neilos = {
 		open_link_tab : function(filename){
 			//open_link_tab: open link
 			if (Neilos.config.debug) console.log("open_link "+filename)
-			
 			//check if we have to use the php core loader or loading the single files
 			var loader = false
 			if (filename.split('/')[0]=='load'){
@@ -446,7 +446,6 @@ var Neilos = {
 			
 			if (Neilos.config.debug) console.log('add_entry '+id+' '+parent)
 			var next_par = Array.prototype.slice.call(arguments,3)
-			
 			//analyze config					
 			var same_config = $('#'+Neilos.config.config_parent).find('config#'+id+'_config')
 			if (($(xml).find('*').andSelf().filter('entry#'+id+' > config').children().length)){
@@ -618,7 +617,6 @@ var Neilos = {
 				//action(optional) = show/hide
 				if (Neilos.config.debug) console.log('toggle_entry '+id+' '+action+' '+disable_animation)
 				next_par = Array.prototype.slice.call(arguments,4)
-				debugger
 				//check if entry exists
 				if ($('#'+id+'_entry').length==0){
 					if ((next!='') && (next!=undefined)) next.apply(null,next_par)
