@@ -2,7 +2,7 @@
 var Neilos = {
 	config : {
 		version : "1.4",
-		debug : 1,
+		debug : 0,
 		config_file : "resources/xml/config.xml",
 		config_file_tag : 'main',
 		config_parent : 'config',
@@ -699,6 +699,15 @@ var Neilos = {
 						})
 					})
 				}
+				
+				if (i==1){
+					//set focus on needed elements and clear them
+					$('#'+id+'_entry .focus').each(function(){
+						$(this).val('')
+						$(this).focus()
+					})
+				}
+				
 },
 		load_entries : function(tag,index,next){
 			//load_entries: load all entries in tag
