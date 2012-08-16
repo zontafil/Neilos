@@ -145,10 +145,13 @@ var Neilos = {
 				var href = $(this).attr('href')
 				$(formid).submit(function(){
 					var param = ''
-					$(this).find('input').each(function(){
-						param = $(this).val()
+					var i=0
+					$(this).find('input[check="true"]').each(function(){
+						i=i+1;
+						param = param + '&param'+i+'='+$(this).val()
 					})
-					href = href.split('#!')[href.split('#!').length-1] + '&param='+param
+					//href = href.split('#!')[href.split('#!').length-1] + '&param='+param
+					href = href.split('#!')[href.split('#!').length-1] + param
 					Neilos.tools.open_link_tab(href)
 					return false
 				})
@@ -415,7 +418,6 @@ var Neilos = {
 			url: path,
 			dataType: "xml",
 			success: function(xml){
-				//debugger
 				if (!$(xml).find('entry#'+id).length){
 					if ((next!='') && (next!=undefined)){
 						if (params[0]=='_pass_result') next(true)
@@ -755,7 +757,6 @@ var Neilos = {
 			Neilos.tools.open_link_tab(hash)
 		},
 		pushUrl : function(link){
-			console.log(link)
 			//write link to the URL bar
 			var stateObj = { foo: link };
 			history.pushState(stateObj, "", link);
