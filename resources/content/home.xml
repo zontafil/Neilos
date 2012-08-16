@@ -23,6 +23,51 @@
 <clear>true</clear>
 </config>
 
+<entry id="160812_neilos_14"><config>
+<tag>neilos</tag><title>Neilos 1.4.1</title>
+<author>m3l7</author>
+<date>2012-08-16</date>
+</config><content> 
+			<span> <b> Neilos 1.4.1</b>. Minor relase.. almost bug fixes.<br/>
+			It is possible now to manage forms (only text box at the moment). The result will be passed to the
+			server with GET method (POST method will come too.)
+			</span>
+			<br/>
+			<span>Changelog:</span>
+			<br/>
+				New feature:
+				<ul>
+				<li>Added forms handling support (initial support)</li>
+				<li>Support for multiple input box in forms</li>
+				<li>Set Focus on last input box when an entry is toggled</li>
+				<li>add install DB admin tool</li>
+				<li>Update url bar support</li>
+				<li>added delete config</li>
+				<li>Added overwrite option to structure_div</li>
+				<li>Added support for creating div inside a target (not working before now)</li>
+				<li>JS Core: Unified the 3 analize_config functions into one</li>
+				</ul>
+				Bug fixes:
+				<ul>
+				<li>Bug Fixed: JS Core: disable page refresh on form submit</li>
+				<li>don&#39;t allow to overwrite entries. Animation bug fixed with merged configs.</li>
+				<li>Fixed a bug in More plugin, added updateurl option to click config</li>
+				<li>Bug Fixed: JS Core: Another animation bug fixed</li>
+				<li>Bug Fixed: JS Core: Entries were not toggled when animation is disabled</li>
+				<li>Bug Fixed: JS Core: Update correctly the url after a click event</li>
+				<li>Bug Fixed: JS Core: now structure methods are called after clearing target</li>
+				<li>Bug fixed: JS core: notitle option wasn&#39;t working</li>
+				<li>Bug Fixed: plugins were not loaded correctly some times</li>
+				<li>Bug Fixed: File2Sql, entries were not overwritten</li>
+				<li>Bug fixed: More plugin showed more button when not necessary</li>
+				<li>bug fixed: linking removed entries</li>
+				</ul>
+
+</content></entry>
+
+
+
+
 
 <entry id="050812_neilos_14"><config>
 <tag>neilos</tag><title>Neilos 1.4</title>
