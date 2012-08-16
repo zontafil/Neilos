@@ -59,152 +59,156 @@ var Neilos = {
 				}
 			return list
 		},
-		analize_config_mid : function(id){
-			if (Neilos.config.debug) console.log('analize_config_mid '+id)
-			//no support for next callback function... problem??
-			//add it if you need threading shits inside this function
-			
-			var cfg = $('#'+Neilos.config.config_parent).find('#'+id+'_config')
-			
-			cfg.find('structure_tab, structure_div').each(function(){
-				var parent = $(this).attr('parent')
-				var overwrite = $(this).attr('overwrite')
-				if ((parent=='') || (parent==undefined)) parent='#'+Neilos.config.container_div
-				if ($(this).is('structure_tab')) Neilos.structure.new_tab($(this).text(),'',parent)
-				else {
-					Neilos.structure.new_div($(this).text()+'_container','',parent,overwrite)
-					Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container',overwrite)
-				}
-			})
 
+		analize_config : function(id,section,next){
+			//analize_config: check config in the DOM for new css, div, tab or xml to load
+			//section can be pre, mid or post.
+			//pre: before adding the entry
+			//mid: after clearing target, before adding content
+			//post: after adding content
 			
-		},
-		analize_config_post : function(id,next){
-			if (Neilos.config.debug) console.log('analize_config_post '+id)
+			if (Neilos.config.debug) console.log('analize_config '+id+' '+section)
+			var next_par = Array.prototype.slice.call(arguments,3)
 			
-			var next_par = Array.prototype.slice.call(arguments,1)
-			
-			//analize_config_post: check for config after adding the content
 			var cfg = $('#'+Neilos.config.config_parent).find('#'+id+'_config')
 			
-			cfg.find('align_horiz').each(function(){
-				w = $(this).text()
-				dim = ($(window).width()-$(w).width())/2
-				$(w).css('left',dim.toString()+"px")
-				$('body').resize(function(){
+			if (config.length==0) return false
+			
+			if (section=='pre'){
+				//PRE CONFIG
+				
+				cfg.find('css').each(function(){
+					Neilos.tools.load_css_config($(this).text(),$(this).attr('id'),id,false)
+				})
+	
+				$('config#'+id+'_config').attr('target',Neilos.config.get_config('target',id,true)[0])
+	
+				cfg.find('home').each(function(){
+					Neilos.home = $(this).text()
+				})
+				cfg.find('pagetitle').each(function(){
+					if ($('head title').length==0) $('head').append('<title/>')
+					$('head title').eq(0).text($(this).text())
+				})
+				if ((next!='') && (next!=undefined)) next.apply(null,next_par)
+	
+					
+			}
+			
+			if (section=='mid'){
+				//MID CONFIG
+				cfg.find('structure_tab, structure_div').each(function(){
+					var parent = $(this).attr('parent')
+					var overwrite = $(this).attr('overwrite')
+					if ((parent=='') || (parent==undefined)) parent='#'+Neilos.config.container_div
+					if ($(this).is('structure_tab')) Neilos.structure.new_tab($(this).text(),'',parent)
+					else {
+						Neilos.structure.new_div($(this).text()+'_container','',parent,overwrite)
+						Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container',overwrite)
+					}
+				})
+			}
+			
+			if (section=='post'){
+				//POST CONFIG
+				
+				cfg.find('align_horiz').each(function(){
+					w = $(this).text()
 					dim = ($(window).width()-$(w).width())/2
 					$(w).css('left',dim.toString()+"px")
-				})
-			})
-			
-			//add additional classes to entry
-			cfg.find('class').each(function(){
-				$('#'+id+'_entry').addClass($(this).text())
-			})
-			
-			//add default onclick event --> hide, show entry
-			$('#'+id+'_entry > #'+id+'_title').off('click')
-			$('#'+id+'_entry > #'+id+'_title').click(function(){
-				str = $(this).parent().attr('id')
-				Neilos.tools.toggle_entry(str.substring(0,str.indexOf('_entry')))
-			})
-			
-			//add additional onclick events
-			cfg.find('click').each(function(){
-				var href = $(this).attr('href')
-				var upd = $(this).attr('updateurl')
-				var remove = $(this).attr('remove')
-				if ($(this).attr('prevent_default')=='true') $('#'+id+'_entry > #'+id+'_title').off('click')
-				$('#'+id+'_entry').off('click')
-				$('#'+id+'_entry').click(function(event){
-					  if (remove=='true') Neilos.tools.remove_entry(id)
-					  if ((href!='') && (href!=undefined)) {
-						if (upd=='true') Neilos.tools.pushUrl('#!'+href)
-						Neilos.tools.open_link_tab(href)
-					  }
-				})
-			})
-			
-			//update the url bar if necessary
-			cfg.find('updateurl').each(function(){
-				if ($(this).text()!='') Neilos.tools.pushUrl($(this).text())
-			})
-			
-			
-			//delete needed entries
-			cfg.find('delete').each(function(){
-				var deleteid = $(this).attr('id')
-				Neilos.config.remove_config_id(deleteid)
-				$('#'+deleteid+'_entry').remove()
-			})
-			
-			//check forms
-			cfg.find('checkform').each(function(){
-				//TODO: THIS IS ONLY A PROOF OF CONCEPT!
-				var formid = $(this).attr('selector')
-				var href = $(this).attr('href')
-				$(formid).submit(function(){
-					var param = ''
-					var i=0
-					$(this).find('input[check="true"]').each(function(){
-						i=i+1;
-						param = param + '&param'+i+'='+$(this).val()
+					$('body').resize(function(){
+						dim = ($(window).width()-$(w).width())/2
+						$(w).css('left',dim.toString()+"px")
 					})
-					//href = href.split('#!')[href.split('#!').length-1] + '&param='+param
-					href = href.split('#!')[href.split('#!').length-1] + param
-					Neilos.tools.open_link_tab(href)
-					return false
 				})
 				
-			})
-			
-			
-			//decide if the entry should be visible or not
-			var skip = Neilos.config.get_config('skipcontent',id) 
-			var tagl = cfg.find('load_file[mode!="LoadWhenShown"]')
-			if (skip[0]!='true'){
-				var dspl = Neilos.config.get_config_obj('display',id,true).last().attr('entries')
-				if (dspl=="hide")
-					Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.load_xml_from_config,tagl,0],next_par))
-				else if (dspl=='showfirst'){
-					obj = $('#'+id+'_entry')
-					if (obj.is(obj.parent().children().first()))
-						Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.load_xml_from_config,tagl,0],next_par))
+				//add additional classes to entry
+				cfg.find('class').each(function(){
+					$('#'+id+'_entry').addClass($(this).text())
+				})
+				
+				//add default onclick event --> hide, show entry
+				$('#'+id+'_entry > #'+id+'_title').off('click')
+				$('#'+id+'_entry > #'+id+'_title').click(function(){
+					str = $(this).parent().attr('id')
+					Neilos.tools.toggle_entry(str.substring(0,str.indexOf('_entry')))
+				})
+				
+				//add additional onclick events
+				cfg.find('click').each(function(){
+					var href = $(this).attr('href')
+					var upd = $(this).attr('updateurl')
+					var remove = $(this).attr('remove')
+					if ($(this).attr('prevent_default')=='true') $('#'+id+'_entry > #'+id+'_title').off('click')
+					$('#'+id+'_entry').off('click')
+					$('#'+id+'_entry').click(function(event){
+						  if (remove=='true') Neilos.tools.remove_entry(id)
+						  if ((href!='') && (href!=undefined)) {
+							if (upd=='true') Neilos.tools.pushUrl('#!'+href)
+							Neilos.tools.open_link_tab(href)
+						  }
+					})
+				})
+				
+				//update the url bar if necessary
+				cfg.find('updateurl').each(function(){
+					if ($(this).text()!='') Neilos.tools.pushUrl($(this).text())
+				})
+				
+				
+				//delete needed entries
+				cfg.find('delete').each(function(){
+					var deleteid = $(this).attr('id')
+					Neilos.config.remove_config_id(deleteid)
+					$('#'+deleteid+'_entry').remove()
+				})
+				
+				//check forms
+				cfg.find('checkform').each(function(){
+					//TODO: THIS IS ONLY A PROOF OF CONCEPT!
+					var formid = $(this).attr('selector')
+					var href = $(this).attr('href')
+					$(formid).submit(function(){
+						var param = ''
+						var i=0
+						$(this).find('input[check="true"]').each(function(){
+							i=i+1;
+							param = param + '&param'+i+'='+$(this).val()
+						})
+						//href = href.split('#!')[href.split('#!').length-1] + '&param='+param
+						href = href.split('#!')[href.split('#!').length-1] + param
+						Neilos.tools.open_link_tab(href)
+						return false
+					})
+					
+				})
+				
+				
+				//decide if the entry should be visible or not
+				var skip = Neilos.config.get_config('skipcontent',id) 
+				var tagl = cfg.find('load_file[mode!="LoadWhenShown"]')
+				if (skip[0]!='true'){
+					var dspl = Neilos.config.get_config_obj('display',id,true).last().attr('entries')
+					if (dspl=="hide")
+						Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
+					else if (dspl=='showfirst'){
+						obj = $('#'+id+'_entry')
+						if (obj.is(obj.parent().children().first()))
+							Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
+						else
+							Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
+					}
 					else
-						Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.load_xml_from_config,tagl,0],next_par))
+						Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
 				}
+				//skip the content, should be loaded when the entry is toggled
 				else
-					Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.load_xml_from_config,tagl,0],next_par))
+					Neilos.config.load_xml_from_config.apply(null,$.merge([tagl,0,next],next_par))
 			}
-			//skip the content, should be loaded when the entry is toggled
-			else
-				Neilos.config.load_xml_from_config.apply(null,$.merge([tagl,0],next_par))
-		},
-		analize_config : function(id,next){
-			//analize_config: check config in the DOM for new css, div, tab or xml to load
-			//call this before adding the content
-			if (Neilos.config.debug) console.log('analize_config ' +id+' ')
 			
-			next_par = Array.prototype.slice.call(arguments,2)
-
-			var cfg = $('#'+Neilos.config.config_parent).find('config#'+id+'_config')
-			if (!cfg.length) return false
-			cfg.find('css').each(function(){
-				Neilos.tools.load_css_config($(this).text(),$(this).attr('id'),id,false)
-			})
-
-			$('config#'+id+'_config').attr('target',Neilos.config.get_config('target',id,true)[0])
-
-			cfg.find('home').each(function(){
-				Neilos.home = $(this).text()
-			})
-			cfg.find('pagetitle').each(function(){
-				if ($('head title').length==0) $('head').append('<title/>')
-				$('head title').eq(0).text($(this).text())
-			})
-			if ((next!='') && (next!=undefined)) next.apply(null,next_par)
 			
 		},
+
 		load_xml_from_config : function(cfg_tag,index,next){
 			//load_xml_from_config: load all xml needed in the conf.
 			//xmls are loaded serially through ajax
@@ -410,7 +414,6 @@ var Neilos = {
 			//add a file to the DOM. Seeks for the proper id, and call next when done.
 			// parent is optional.. It is useful only for config ereditariety
 			if (Neilos.config.debug) console.log('add_file '+path+' '+id+' '+parent)
-			
 			var params = Array.prototype.slice.call(arguments,4)
 			
 			$.ajax({
@@ -431,7 +434,6 @@ var Neilos = {
 				}
 			},
 			error: function(){
-				//debugger
 				if (Neilos.config.debug) console.log('error loading file '+path)
 				if ((next!='') && (next!=undefined)){
 					if (params[0]=='_pass_result') next(false) 
@@ -479,7 +481,7 @@ var Neilos = {
 					//check if the parent does really exist, otherwise don't add it to the present config
 					if ($('config#'+parent+'_config').length) $('config#'+id+'_config').attr('parent',parent)
 				}
-				Neilos.config.analize_config.apply(null,$.merge([id,Neilos.tools.add_content_check,xml,id],next_par))
+				Neilos.config.analize_config.apply(null,$.merge([id,'pre',Neilos.tools.add_content_check,xml,id],next_par))
 			}
 			else {
 					if (same_config.length<=0){
@@ -530,35 +532,35 @@ var Neilos = {
 							$(trg)[animfunc[0]](speedhide,function(){
 								$(trg).children().remove()
 								$(trg).attr('style','display: block;')
-								Neilos.config.analize_config_mid(id)
+								Neilos.config.analize_config(id,'mid')
 								if (Neilos.config.get_config('visibility',id)[0]!='false')
 									Neilos.tools.add_content(xml,id,trg,type)
 								if (Neilos.config.get_config('skipsubentries',id,true)!='true')
-									Neilos.config.analize_config_post.apply(null,$.merge([id,Neilos.tools.load_entries,subentries,0,next],next_par))
+									Neilos.config.analize_config.apply(null,$.merge([id,'post',Neilos.tools.load_entries,subentries,0,next],next_par))
 								else
-									Neilos.config.analize_config_post.apply(null,$.merge([id,next],next_par))
+									Neilos.config.analize_config.apply(null,$.merge([id,'post',next],next_par))
 							})
 								
 						}
 						else {
 								$(trg).children().remove()
-								Neilos.config.analize_config_mid(id)
+								Neilos.config.analize_config(id,'mid')
 								if (Neilos.config.get_config('visibility',id)[0]!='false')
 									Neilos.tools.add_content(xml,id,trg,type)
 								if (Neilos.config.get_config('skipsubentries',id,true)!='true')
-									Neilos.config.analize_config_post.apply(null,$.merge([id,Neilos.tools.load_entries,subentries,0,next],next_par))
+									Neilos.config.analize_config.apply(null,$.merge([id,'post',Neilos.tools.load_entries,subentries,0,next],next_par))
 								else
-									Neilos.config.analize_config_post(id)
+									Neilos.config.analize_config(id,'post')
 						}
 					}
 				else {
-					Neilos.config.analize_config_mid(id)
+					Neilos.config.analize_config(id,'mid')
 					if (Neilos.config.get_config('visibility',id)[0]!='false')
 						Neilos.tools.add_content(xml,id,trg,type)
 					if (Neilos.config.get_config('skipsubentries',id,true)!='true')
-						Neilos.config.analize_config_post.apply(null,$.merge([id,Neilos.tools.load_entries,subentries,0,next],next_par))
+						Neilos.config.analize_config.apply(null,$.merge([id,'post',Neilos.tools.load_entries,subentries,0,next],next_par))
 					else
-						Neilos.config.analize_config_post.apply(null,$.merge([id,next],next_par))
+						Neilos.config.analize_config.apply(null,$.merge([id,'post',next],next_par))
 
 					
 				}
@@ -568,7 +570,6 @@ var Neilos = {
 				//add_content.. Add <title> and <content> from an entry to the DOM
 				//check if content should be added or not
 				if (Neilos.config.debug) console.log('add_content '+id+' '+trg+' '+type)
-				//debugger
 				if (trg!=undefined){
 					
 					//compute the index of the entry
@@ -714,7 +715,6 @@ var Neilos = {
 		load_entries : function(tag,index,next){
 			//load_entries: load all entries in tag
 			//entries are loaded serially through ajax
-			//debugger
 			params = Array.prototype.slice.call(arguments,3)
 			
 			if ((index=='') || (index==undefined)) index=0
@@ -778,5 +778,6 @@ var Neilos = {
 		
 	}	
 }
+
 
 $(document).ready(Neilos.init)
