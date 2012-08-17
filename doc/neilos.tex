@@ -284,14 +284,19 @@ To load a plugin, just add the "plugin" tag to the config section, i.e.
             </load>
     </plugin>
         \end{minted}
+Dev Version supports a basic client side plugin architecture. To load a js (client side) plugin, use
+\begin{minted}{xml}
+ <plugin type='js'>name</plugin>
+\end{minted}
+
 \subsection{List of plugins}
-\subsubsection{More}
+\subsubsection{More (Server)}
 More plugin prevents neilos to load all subentries of a given entry if they are too many.\\
 It is possible to specify how many subentries have to be shown at the same time, and choose to show a more button for showing the next page.\\
 \bfseries Parameters:\\
 \normalfont \normalsize -entries\_per\_page: number of entries to display in a single 'page'.\\
 -show\_more: if set to 1, a button which loads the next page will be visible.\\
-\subsubsection{Loader}
+\subsubsection{Loader (Server)}
 Load entries and add them as subentries using the php core. This is different from the standard $load\_file$ situation where the entries are loaded separately by the js core.\\
 This is useful when additional entries have to be loaded as subentries, i.e. to be postprocessed by other plugins.\\
 \bfseries Parameters:\\

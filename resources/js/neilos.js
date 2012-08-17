@@ -7,6 +7,7 @@ var Neilos = {
 		config_file_tag : 'main',
 		config_parent : 'config',
 		container_div : "container",
+		plugins : Array(),
 		initialized : false,
 		initialize : function(next){
 			if (Neilos.config.initialized){
@@ -74,8 +75,21 @@ var Neilos = {
 			
 			if (config.length==0) return false
 			
+			//load plugins
+			jQuery.each(Neilos.config.plugins,function(i,plugname){
+				if (jQuery.isFunction(window[plugname].analize_config)) window[plugname].analize_config(id,section)
+			})
+
+			
 			if (section=='pre'){
 				//PRE CONFIG
+				
+				cfg.find('plugin[type="js"]').each(function(){
+					var plugname = $(this).text()
+					$.getScript('resources/plugin/'+plugname+'/main.js').done(function(){
+						if ($.inArray(plugname,Neilos.config.plugins)==-1) Neilos.config.plugins.push(plugname)
+					})
+				})
 				
 				cfg.find('css').each(function(){
 					Neilos.tools.load_css_config($(this).text(),$(this).attr('id'),id,false)
@@ -730,13 +744,15 @@ var Neilos = {
 		
 		remove_entry : function(id,next){
 			//remove an entry
+			
 			if (Neilos.config.debug) console.log('removing entry '+id)
 
 			params = Array.prototype.slice.call(arguments,3)
-						
+				
 			if ($('#'+id+'_entry').length<1) if ((next!=undefined) && (next!='')) next.apply(null,params)
 			Neilos.config.remove_config_id(id)
 			$('#'+id+'_entry').remove()
+			
 			if ((next!=undefined) && (next!='')) next.apply(null,params)
 		},
 		check_hash : function(){
