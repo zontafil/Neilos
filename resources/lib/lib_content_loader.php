@@ -167,7 +167,7 @@ function apply_plugins($xml,$id,$in_str,$context){
 			$par_n = (string) $cont2->attributes()['name'];
 			$param[$par_n]=$cont2;
 		}
-		include_once dirname(__FILE__).'/../plugin/'.$pl_name.'.php';
+		include_once dirname(__FILE__).'/../plugin/'.$pl_name.'/main.php';
 		$pl_ob = new $pl_name();
 		$out_str = $pl_ob->init($out_str,$context,$param);
 		unset($pl_ob);
