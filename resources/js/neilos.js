@@ -183,18 +183,17 @@ var Neilos = {
 					var formid = $(this).attr('selector')
 					var href = $(this).attr('href')
 					$(formid).submit(function(){
+						var link = ''
 						var param = ''
 						var i=0
 						$(this).find('input[check="true"]').each(function(){
 							i=i+1;
 							param = param + '&param'+i+'='+$(this).val()
 						})
-						//href = href.split('#!')[href.split('#!').length-1] + '&param='+param
-						href = href.split('#!')[href.split('#!').length-1] + param
-						Neilos.tools.open_link_tab(href)
+						link = href.split('#!')[href.split('#!').length-1] + param
+						Neilos.tools.open_link_tab(link)
 						return false
 					})
-					
 				})
 				
 				
