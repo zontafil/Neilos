@@ -173,8 +173,15 @@ var Neilos = {
 				//delete needed entries
 				cfg.find('delete').each(function(){
 					var deleteid = $(this).attr('id')
-					Neilos.config.remove_config_id(deleteid)
-					$('#'+deleteid+'_entry').remove()
+					var dlay = parseInt($(this).attr('delay'))
+					if (jQuery.type(dlay)!='number') dlay=0
+					
+					setTimeout(function(){
+						Neilos.tools.toggle_entry(deleteid,'hideall','',function(){
+							Neilos.config.remove_config_id(deleteid)
+							$('#'+deleteid+'_entry').remove()	
+						})
+					},dlay)
 				})
 				
 				//check forms
@@ -182,6 +189,12 @@ var Neilos = {
 					//TODO: THIS IS ONLY A PROOF OF CONCEPT!
 					var formid = $(this).attr('selector')
 					var href = $(this).attr('href')
+					
+					$(formid).find('input[type="text"]').each(function(){
+						var def_val = $(this).attr('default_text')
+						if ((def_val!=undefined) || (def_val!='')) $(this).val(def_val)
+					})
+					
 					$(formid).submit(function(){
 						var link = ''
 						var param = ''
@@ -630,15 +643,16 @@ var Neilos = {
 		},
 		toggle_entry : function(id,action,disable_animation,next){
 				//toggle_entry_int: hide or show an entry (tab or div) created with new_tab
+				//hideall will hide the title too
 				//action(optional) = show/hide
 				if (Neilos.config.debug) console.log('toggle_entry '+id+' '+action+' '+disable_animation)
 				next_par = Array.prototype.slice.call(arguments,4)
+				
 				//check if entry exists
 				if ($('#'+id+'_entry').length==0){
 					if ((next!='') && (next!=undefined)) next.apply(null,next_par)
 					else return false;
 				}
-				
 				var i=0
 				if (action=='show') i=1
 				else if ((action!='hide') && (!$('#'+id+'_entry > #'+id+'_content').is(':visible'))) i=1
@@ -671,6 +685,7 @@ var Neilos = {
 				
 				if ($('#'+id+'_entry').is(':visible')==false){
 					$('#'+id+'_entry > #'+id+'_title').attr('style','display: block;')
+					if (action=='hideall') $('#'+id+'_entry > #'+id+'_title').attr('style','display: none;')
 					$('#'+id+'_entry > #'+id+'_content').attr('style','display: '+prp+';')
 					$('#'+id+'_entry > #'+id+'_comments').attr('style','display: '+prp+';')
 					$('#'+id+'_entry')[animfunction[1]](speedshow,function(){
@@ -691,7 +706,12 @@ var Neilos = {
 					}
 				}
 				else{
-					$('#'+id+'_entry > #'+id+'_title')[animfunction[1]](speed,function(){
+					var act_title = 1
+					if (action=='hideall') act_title = 2
+					
+					//this is very dumb... rewrite it? remove comments?
+					
+					if ($('#'+id+'_entry > #'+id+'_title').length) $('#'+id+'_entry > #'+id+'_title')[animfunction[act_title]](speed,function(){
 						$('#'+id+'_entry > #'+id+'_content')[animfunction[i]](speed,function(){
 							if ($('#'+id+'_entry > #'+id+'_comments').length){
 								$('#'+id+'_entry > #'+id+'_comments')[animfunction[i]](speed,function(){
@@ -714,6 +734,31 @@ var Neilos = {
 							}
 						})
 					})
+					else{
+						//there is no title... animate the other elements
+						$('#'+id+'_entry > #'+id+'_content')[animfunction[i]](speed,function(){
+							if ($('#'+id+'_entry > #'+id+'_comments').length){
+								$('#'+id+'_entry > #'+id+'_comments')[animfunction[i]](speed,function(){
+										if (i==1){
+											var cfg = $('#'+Neilos.config.config_parent).find('config#'+id+'_config > load_file[mode="LoadWhenShown"]')				
+											Neilos.config.load_xml_from_config.apply(null,$.merge([cfg,0,next],next_par))
+										}
+										else if ((next!='') && (next!=undefined))
+											next.apply(null,next_par)
+								})
+							}
+							else {
+									$('#'+id+'_entry > #'+id+'_comments').attr('style','display: '+prp+';')
+									if (i==1){
+										var cfg = $('#'+Neilos.config.config_parent).find('config#'+id+'_config > load_file[mode="LoadWhenShown"]')				
+										Neilos.config.load_xml_from_config.apply(null,$.merge([cfg,0,next],next_par))
+									}
+									else if ((next!='') && (next!=undefined))
+										next.apply(null,next_par)
+							}
+						})
+
+					}
 				}
 				
 				if (i==1){
