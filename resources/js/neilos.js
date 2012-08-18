@@ -129,10 +129,16 @@ var Neilos = {
 				cfg.find('align_horiz').each(function(){
 					w = $(this).text()
 					dim = ($(window).width()-$(w).width())/2
-					$(w).css('left',dim.toString()+"px")
+					$(w).css('left',(dim).toString()+"px")
+					
+					setTimeout(function(){
+						dim = ($(window).width()-$(w).width())/2
+						$(w).css('left',(dim).toString()+"px")
+					},20)
+					
 					$('body').resize(function(){
 						dim = ($(window).width()-$(w).width())/2
-						$(w).css('left',dim.toString()+"px")
+						$(w).css('left',(dim).toString()+"px")
 					})
 				})
 				
