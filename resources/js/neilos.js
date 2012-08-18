@@ -244,6 +244,7 @@ var Neilos = {
 		load_xml_from_config : function(cfg_tag,index,next){
 			//load_xml_from_config: load all xml needed in the conf.
 			//xmls are loaded serially through ajax
+			//if (Neilos.config.debug) console.log('load_xml_from_config '+index)
 
 			params = Array.prototype.slice.call(arguments,3)
 			
@@ -652,12 +653,12 @@ var Neilos = {
 				//hideall will hide the title too
 				//action(optional) = show/hide
 				if (Neilos.config.debug) console.log('toggle_entry '+id+' '+action+' '+disable_animation)
-				next_par = Array.prototype.slice.call(arguments,4)
+				var next_par = Array.prototype.slice.call(arguments,4)
 				
 				//check if entry exists
 				if ($('#'+id+'_entry').length==0){
 					if ((next!='') && (next!=undefined)) next.apply(null,next_par)
-					else return false;
+					return false;
 				}
 				var i=0
 				if (action=='show') i=1
@@ -688,7 +689,6 @@ var Neilos = {
 				
 				if (i==1) prp = 'block'
 				else prp = 'none'
-				
 				if ($('#'+id+'_entry').is(':visible')==false){
 					$('#'+id+'_entry > #'+id+'_title').attr('style','display: block;')
 					if (action=='hideall') $('#'+id+'_entry > #'+id+'_title').attr('style','display: none;')
@@ -779,15 +779,15 @@ var Neilos = {
 		load_entries : function(tag,index,next){
 			//load_entries: load all entries in tag
 			//entries are loaded serially through ajax
-			params = Array.prototype.slice.call(arguments,3)
+			var params = Array.prototype.slice.call(arguments,3)
 			
 			if ((index=='') || (index==undefined)) index=0
 			if (index>=tag.length){
 				if ((next!=undefined) && (next!='')) next.apply(null,params)
 				return false
 			}
-			parent = $(tag).eq(index).parent().attr('id')
-			id = $(tag).eq(index).attr('id')
+			var parent = $(tag).eq(index).parent().attr('id')
+			var id = $(tag).eq(index).attr('id')
 			if ((parent=='') || (parent==undefined)) return false
 			Neilos.tools.add_entry.apply(null,$.merge([tag,id,parent,Neilos.tools.load_entries,tag,index+1,next],params))		
 		},
