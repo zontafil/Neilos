@@ -88,6 +88,7 @@ var Neilos = {
 					var plugname = $(this).text()
 					$.getScript('resources/plugin/'+plugname+'/main.js').done(function(){
 						if ($.inArray(plugname,Neilos.config.plugins)==-1) Neilos.config.plugins.push(plugname)
+						if (jQuery.isFunction(window[plugname].init)) window[plugname].init()
 					})
 				})
 				
