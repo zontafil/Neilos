@@ -70,7 +70,7 @@ var Neilos = {
 			
 			if (Neilos.config.debug) console.log('analize_config '+id+' '+section)
 			var next_par = Array.prototype.slice.call(arguments,3)
-			
+
 			var cfg = $('#'+Neilos.config.config_parent).find('#'+id+'_config')
 			
 			if (config.length==0) return false
@@ -104,6 +104,7 @@ var Neilos = {
 				cfg.find('pagetitle').each(function(){
 					if ($('head title').length==0) $('head').append('<title/>')
 					$('head title').eq(0).text($(this).text())
+					$(this).remove()
 				})
 				if ((next!='') && (next!=undefined)) next.apply(null,next_par)
 	
@@ -121,6 +122,7 @@ var Neilos = {
 						Neilos.structure.new_div($(this).text()+'_container','',parent,overwrite)
 						Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container',overwrite)
 					}
+					$(this).remove()
 				})
 			}
 			
@@ -169,11 +171,14 @@ var Neilos = {
 							Neilos.tools.open_link_tab(href)
 						  }
 					})
+					
+					$(this).remove()
 				})
 				
 				//update the url bar if necessary
 				cfg.find('updateurl').each(function(){
 					if ($(this).text()!='') Neilos.tools.pushUrl($(this).text())
+					$(this).remove()
 				})
 				
 				
@@ -189,6 +194,7 @@ var Neilos = {
 							$('#'+deleteid+'_entry').remove()	
 						})
 					},dlay)
+					$(this).remove()
 				})
 				
 				//check forms
