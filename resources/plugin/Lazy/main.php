@@ -12,7 +12,7 @@ global $_SERVER;
 
 
 Class Lazy{
-	public function init($_input_string,$_context,$param){
+	public function init($_input_string,$id,$_context,$param){
 		return $_input_string;
 	}
 }

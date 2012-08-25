@@ -12,7 +12,7 @@ global $_SERVER;
 
 
 Class More{
-	public function init($_input_string,$_context,$param){
+	public function init($_input_string,$id,$_context,$param){
 		if (($_input_string!='') && ($_input_string!=NULL)){
 			#fetch parameters
 			//$id = $param['_more_id'];

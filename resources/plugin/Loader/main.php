@@ -11,7 +11,7 @@ global $_SERVER;
 
 
 Class Loader{
-	public function init($_input_string,$_context,$param){
+	public function init($_input_string,$id,$_context,$param){
 		require_once dirname(__FILE__).'/../../lib/lib_content_loader.php';
 		
 		#fill entries

@@ -129,7 +129,6 @@ function load_entry($xml,$id){
 function load_entry_convert($xml,$id,$id_out){
 	$entry_str = "<entry id='$id_out'>";
 	$entry_str .= load_block($xml, $id, 'config');
-	$entry_str .= load_block($xml, $id, 'title');
 	$entry_str .= load_block($xml, $id, 'content');
 	$subentries_str = '';
 	foreach ($xml->xpath('//entry[@id="'.$id.'"]/entry') as $i=>$cont){
@@ -139,6 +138,9 @@ function load_entry_convert($xml,$id,$id_out){
 	
 	$entry_str .= apply_plugins($xml,$id,$subentries_str,'subentries');
 	$entry_str .= "</entry>";
+	
+	$entry_str .= apply_plugins($xml,$id,'','outside');
+	
 	return $entry_str;
 }
 
@@ -169,7 +171,7 @@ function apply_plugins($xml,$id,$in_str,$context){
 		}
 		include_once dirname(__FILE__).'/../plugin/'.$pl_name.'/main.php';
 		$pl_ob = new $pl_name();
-		$out_str = $pl_ob->init($out_str,$context,$param);
+		$out_str = $pl_ob->init($out_str,$id,$context,$param);
 		unset($pl_ob);
 	}
 	return $out_str;
