@@ -228,20 +228,23 @@ var Neilos = {
 				if (skip[0]!='true'){
 					var dspl = Neilos.config.get_config_obj('display',id,true).last().attr('entries')
 					if (dspl=="hide")
-						Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
+						Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.analize_config,id,'aftertoggle',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
 					else if (dspl=='showfirst'){
 						obj = $('#'+id+'_entry')
 						if (obj.is(obj.parent().children().first()))
-							Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
+							Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.analize_config,id,'aftertoggle',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
 						else
-							Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
+							Neilos.tools.toggle_entry.apply(null,$.merge([id,'hide','',Neilos.config.analize_config,id,'aftertoggle',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
 					}
 					else
-						Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
+						Neilos.tools.toggle_entry.apply(null,$.merge([id,'show','',Neilos.config.analize_config,id,'aftertoggle',Neilos.config.load_xml_from_config,tagl,0,next],next_par))
 				}
 				//skip the content, should be loaded when the entry is toggled
 				else
 					Neilos.config.load_xml_from_config.apply(null,$.merge([tagl,0,next],next_par))
+			}
+			if (section=='aftertoggle'){
+				if ((next!='') && (next!=undefined)) next.apply(null,next_par)
 			}
 			
 			
