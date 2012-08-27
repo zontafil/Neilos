@@ -83,7 +83,6 @@ var Neilos = {
 			
 			if (section=='pre'){
 				//PRE CONFIG
-				
 				cfg.find('plugin[type="js"]').each(function(){
 					var plugname = $(this).text()
 					$.getScript('resources/plugin/'+plugname+'/main.js').done(function(){
@@ -455,7 +454,7 @@ var Neilos = {
 			// parent is optional.. It is useful only for config ereditariety
 			if (Neilos.config.debug) console.log('add_file '+path+' '+id+' '+parent)
 			var params = Array.prototype.slice.call(arguments,4)
-			
+
 			$.ajax({
 			type: "GET",
 			url: path,
@@ -474,6 +473,7 @@ var Neilos = {
 				}
 			},
 			error: function(){
+				
 				if (Neilos.config.debug) console.log('error loading file '+path)
 				if ((next!='') && (next!=undefined)){
 					if (params[0]=='_pass_result') next(false) 
@@ -689,6 +689,8 @@ var Neilos = {
 				var animfunction=['toggle','show','hide']
 				if ((anim_on!='enabled') || (disable_animation=="true") || disable_animation==true) {
 					speed=0
+					speedshow=undefined
+					speedhide=undefined
 				}
 				else if (anim_type=='fade') animfunction=['fadeToggle','fadeIn','fadeOut']
 				else if (anim_type=='slide') animfunction=['slideToggle','slideDown','slideUp']
