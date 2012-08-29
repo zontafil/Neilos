@@ -19,7 +19,7 @@ var Neilos = {
 			Neilos.config.initialized = true
 			
 			next_par = Array.prototype.slice.call(arguments,0)
-			Neilos.tools.add_file.apply(null,$.merge([Neilos.config.config_file,Neilos.config.config_file_tag,''],next_par))
+			Neilos.tools.add_file.apply(null,$.merge([Neilos.config.config_file,Neilos.config.config_file_tag,'',''],next_par))
 			$('#'+Neilos.config.config_parent).css('visibility','hidden')
 			$('#'+Neilos.config.config_parent).css('height','0px')
 			return true
@@ -265,7 +265,7 @@ var Neilos = {
 			var parent = $(cfg_tag).eq(index).parent().attr('id')
 			if ((parent=='') || (parent==undefined)) return false
 			parent = parent.substring(0,parent.indexOf('_config'))
-			Neilos.tools.add_file.apply(null,$.merge([cfg_tag.eq(index).text(),cfg_tag.eq(index).attr('entryid'),parent,Neilos.config.load_xml_from_config,cfg_tag,index+1,next],params))		
+			Neilos.tools.add_file.apply(null,$.merge([cfg_tag.eq(index).text(),cfg_tag.eq(index).attr('entryid'),parent,'',Neilos.config.load_xml_from_config,cfg_tag,index+1,next],params))		
 		},
 		remove_config_from_trg : function(trg){
 			//remove_config_from_trg
@@ -438,28 +438,30 @@ var Neilos = {
 				fs[0]=loader_tag
 			}
 		  	
-		  	if ((ext=='php') || (ext=='xml')) Neilos.tools.add_file(path+'.'+ext+php_get,fs[0],Neilos.config.config_file_tag)
+		  	if ((ext=='php') || (ext=='xml')) Neilos.tools.add_file(path+'.'+ext+php_get,fs[0],Neilos.config.config_file_tag,'')
 			else{
 				if (default_ext=='php') var exttry = new Array('.php'+php_get,'','.xml')
 				else if (default_ext=='xml') var exttry = new Array('.xml','','.php'+php_get)
 				else var exttry = new Array('','.xml','.php'+php_get)
 				
 				
-				Neilos.tools.add_file(path+exttry[0],fs[0],Neilos.config.config_file_tag,function(res){
-					if (!res) Neilos.tools.add_file(path+exttry[1],fs[0],Neilos.config.config_file_tag,function(res){
-						if (!res) Neilos.tools.add_file(path+exttry[2],fs[0],Neilos.config.config_file_tag)
+				Neilos.tools.add_file(path+exttry[0],fs[0],Neilos.config.config_file_tag,'',function(res){
+					if (!res) Neilos.tools.add_file(path+exttry[1],fs[0],Neilos.config.config_file_tag,'',function(res){
+						if (!res) Neilos.tools.add_file(path+exttry[2],fs[0],Neilos.config.config_file_tag,'')
 					},'_pass_result')
 				},'_pass_result')
 			}
 		},
-		add_file : function(path,id,parent,next){
+		add_file : function(path,id,parent,type,next){
 			//add a file to the DOM. Seeks for the proper id, and call next when done.
 			// parent is optional.. It is useful only for config ereditariety
-			if (Neilos.config.debug) console.log('add_file '+path+' '+id+' '+parent)
-			var params = Array.prototype.slice.call(arguments,4)
+			if (Neilos.config.debug) console.log('add_file '+path+' '+id+' '+parent+' '+type)
+			var params = Array.prototype.slice.call(arguments,5)
+			if ((type==undefined) || (type=='')) type = 'GET'
 
 			$.ajax({
-			type: "GET",
+			
+			type: type,
 			url: path,
 			dataType: "xml",
 			success: function(xml){
