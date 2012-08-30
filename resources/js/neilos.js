@@ -118,8 +118,9 @@ var Neilos = {
 					if ((parent=='') || (parent==undefined)) parent='#'+Neilos.config.container_div
 					if ($(this).is('structure_tab')) Neilos.structure.new_tab($(this).text(),'',parent)
 					else {
-						Neilos.structure.new_div($(this).text()+'_container','',parent,overwrite)
-						Neilos.structure.new_div($(this).text(),'','#'+$(this).text()+'_container',overwrite)
+						var cls = $(this).attr('class')
+						Neilos.structure.new_div($(this).text()+'_container',cls,parent,overwrite)
+						Neilos.structure.new_div($(this).text(),cls,'#'+$(this).text()+'_container',overwrite)
 					}
 					$(this).remove()
 				})
@@ -253,7 +254,6 @@ var Neilos = {
 		load_xml_from_config : function(cfg_tag,index,next){
 			//load_xml_from_config: load all xml needed in the conf.
 			//xmls are loaded serially through ajax
-			//if (Neilos.config.debug) console.log('load_xml_from_config '+index)
 
 			params = Array.prototype.slice.call(arguments,3)
 			
